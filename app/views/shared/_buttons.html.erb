@@ -1,0 +1,9 @@
+<!-- app/views/shared/_buttons.html.erb -->
+<% data_action ||= nil %>
+
+<% case button_type %>
+  <% when :stimulus %>
+    <%= button_tag "Test Stimulus", class: "btn btn-primary", data: { action: data_action.presence }  %>
+  <% else %>
+    <%= button_tag "Default Button", class: "btn btn-default" %>
+<% end %>

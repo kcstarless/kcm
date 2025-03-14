@@ -1,0 +1,44 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--color-bg-w);
+  font-family: var(--font-inter);
+}
+
+img,
+picture,
+svg {
+}
+
+input,
+button,
+textarea,
+select {
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: var(--line-height-headers);
+}
+
+p {
+  line-height: var(--line-height-body);
+  font-size: var(--font-size-small);
+}
