@@ -2,9 +2,20 @@
 @use "variables";
 @use "resets";
 @use "layout";
+@use "mixins";
+
+// Layout
+@use "./layouts/header.scss";
+@use "./layouts/accordion";
+
+// Pages
+@use "./pages/home";
+@use "./pages/visitus";
+@use "./pages/ourtraders";
 
 // Components
 @use "./components/buttons";
+@use "./components/link";
 
 // Import external resources (Google Fonts)
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"); // Dancing Script

@@ -1,0 +1,51 @@
+.accordion {
+  display: flex;
+  flex-direction: row;
+  //   gap: 1rem;
+}
+
+.accordion-panel {
+  position: relative;
+  isolation: isolate;
+  width: clamp(1rem, 4vw, 4rem);
+  height: 100vh;
+  transition: max-height 0.3s ease-out, width 0.3s ease-out;
+}
+
+.accordion-panel:has([aria-expanded="true"]) {
+  max-height: 100%; /* Adjust based on content size */
+  width: 100%;
+  .panel {
+    cursor: default;
+  }
+}
+
+.panel {
+  height: 100%;
+  cursor: pointer;
+  .title {
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    // font-weight: bold;
+    font-size: 2rem;
+    font-family: "Nova Mono";
+    writing-mode: vertical-rl;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+input,
+textarea,
+.panel [contenteditable] {
+  caret-color: red; /* Replace 'red' with your desired color */
+}
+
+@media screen and (max-width: 1500px) {
+  .accordion {
+    display: none;
+  }
+}

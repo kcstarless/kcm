@@ -2,4 +2,37 @@
   &.btn-primary {
     color: red;
   }
+
+  &.close-1,
+  &.close-2 {
+    position: absolute; /* Float the button on top */
+    left: 50%; /* Horizontal center */
+    transform: translate(
+      -50%,
+      -50%
+    ); /* Move the button back by half of its width and height to fully center it */
+    // background-color: red;
+    color: white;
+    background: transparent;
+    font-size: 3rem;
+    // font-weight: bold;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    &.close-1 {
+      top: 33%; /* Vertical center */
+    }
+    &.close-2 {
+      top: 66.5%; /* Vertical center */
+    }
+  }
+
+  &.accordion-trigger {
+    position: absolute;
+    left: 0;
+    width: clamp(3rem, 5vw, 5rem);
+    height: 100%;
+    background-color: transparent;
+    border: none;
+  }
 }

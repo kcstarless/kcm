@@ -1,18 +1,5 @@
-<h1>RAILS 8</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
 
-<p>This template includes follow: </p>
-
-<ul>
-    <li>PostgreSQL</li>
-    <li>SASS</li>
-    <li>Vite</li>
-    <li>Stimulus</li>
-    <li>Turbo</li>
-    <li>Auto Reload</li>
-</ul>
-
-<div data-controller="hello">
-  <%= render "shared/buttons", button_type: :stimulus, data_action: "click->hello#greet" %>
-  <p data-hello-target="output">Waiting for greeting...</p>
-</div>
+<!-- Desktop Layout -->
+<turbo-frame id="main-content">
+  <%= render partial: "home_content" %>
+</turbo-frame>

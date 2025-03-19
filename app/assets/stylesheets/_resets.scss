@@ -10,12 +10,10 @@
 }
 
 html {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
-  background-color: var(--color-bg-w);
-  font-family: var(--font-inter);
 }
 
 img,
@@ -40,5 +38,4 @@ h6 {
 
 p {
   line-height: var(--line-height-body);
-  font-size: var(--font-size-small);
 }

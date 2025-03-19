@@ -1,0 +1,38 @@
+body {
+  background: transparent;
+  font-family: "Marcellus";
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-small);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .content {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+footer {
+}
+
+// @media (min-width: 1499px) {
+//   .mobile-layout {
+//     display: none;
+//   }
+// }
+
+// @media (max-width: 1500px) {
+//   .desktop-layout {
+//     display: none;
+//   }
+// }

@@ -1,0 +1,81 @@
+<header data-controller="header submenu">
+    <div class="logo-cont">
+        <%= link_to root_path do %>
+            <%= image_tag("logo_dark_tilt.svg", 
+                alt: "Your Logo", 
+                class: "logo",
+                data: { 
+                    header_target: "logo",
+                    dark_path: asset_path("logo_dark_tilt.svg"),
+                    light_path: asset_path("logo_light_tilt.svg")
+                }) %>
+        <% end %>
+    </div>
+
+    <%# Bar for mobile devices %>
+    <div class="menu-cont">
+        <%= link_to "#" do %>
+            <%= image_tag("icons/icon_search.svg", 
+                alt: "Search Icon", 
+                class: "icon",
+                data: { 
+                    header_target: "searchIcon",
+                    dark_path: asset_path("icons/icon_search.svg"),
+                    light_path: asset_path("icons/icon_search_light.svg")
+                }
+            ) %>
+        <% end %>
+
+        <%= link_to "#" do %>
+            <%= image_tag("icons/icon_shopping.svg", 
+                alt: "Shopping Icon", 
+                class: "icon",
+                data: { 
+                    header_target: "shoppingIcon",
+                    dark_path: asset_path("icons/icon_shopping.svg"),
+                    light_path: asset_path("icons/icon_shopping_light.svg")
+                }
+            ) %>
+        <% end %>
+        <%# Hamberger menu for mobile devices %>
+        <%= link_to "#", id: "menu-toggle", data: { action: "click->header#toggleOpenMenu" } do %>
+            <%= image_tag("icons/menu_hover.svg", alt: "Menu Icon", class: "icon") %>
+        <% end %>
+    </div>
+
+    <%# Main menu for mobile devices expanded %>
+    <div id="menu-list" data-header-target="menuList" class="menu-list">
+        <div class="menu-item">
+            <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "Visit Us", color: "#0cb2af"
+             } do %>
+                <p>Visit Us</p>
+            <% end %>
+        </div>
+        <div class="menu-item">
+            <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "Our Traders", color: "#a1c65d"
+             } do %>
+                <p>Our Traders</p>
+            <% end %>
+        </div>
+        <div class="menu-item"><p>Become a Trader</p></div>
+        <div class="menu-item"><p>Events & Tours</p></div>
+        <div class="menu-item"><p>News</p></div>
+        <div class="menu-item"><p>The Night Market</p></div>
+        <button data-action="click->header#toggleOpenMenu" class="btn close-1">✕</button>
+        <button data-action="click->header#toggleOpenMenu" class="btn close-2">✕</button>
+    </div>
+
+    <%# Submenu modal for mobile devices %>
+    <div class="submenu-modal" data-submenu-target="submenuModal">
+        <div class="content">
+            <div class="header">
+                <button class="modal-close" data-action="click->submenu#closeSubmenu"><%= image_tag("icons/menu_hover.svg", alt: "Menu Icon", class: "icon") %></button>
+                <span class="title"data-submenu-target="submenuTitle"></span>
+            </div>
+            <div class="submenu-list" data-submenu-target="submenuList">
+                
+            </div>
+        </div>
+    </div>
+</header>
+

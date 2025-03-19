@@ -1,0 +1,190 @@
+@use "mixins" as m;
+
+// Header bar
+header {
+  .logo-cont {
+    .logo {
+      width: clamp(5rem, 5vw, 7rem);
+    }
+  }
+
+  .menu-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-small);
+
+    .icon {
+      width: clamp(3rem, 4vw, 4rem);
+      transition: transform 0.3s ease-in-out;
+
+      &:hover {
+        transform: rotate(-20deg);
+      }
+    }
+  }
+
+  &.small {
+    padding: var(--space-xsmall);
+    .logo {
+      width: clamp(3rem, 5vw, 4rem);
+    }
+    .icon {
+      width: clamp(2rem, 4vw, 3rem);
+    }
+  }
+}
+
+// Main menu
+.menu-list {
+  display: none;
+
+  &.closing {
+    animation: fadeOut 1s forwards;
+  }
+
+  &.opened {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    .menu-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      font-family: "Nova Mono";
+      font-size: clamp(1.2rem, 5vw, 3rem);
+      // font-weight: bold;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+
+      @include m.menu-item-styles(#0cb2af, 0.8s);
+      @include m.paragraph-rotation(-50, -20);
+
+      &:nth-child(2) {
+        @include m.menu-item-styles(#a1c65d, 0.2s);
+        @include m.paragraph-rotation(15, -8);
+      }
+
+      &:nth-child(3) {
+        @include m.menu-item-styles(#fac723, 0.6s);
+        @include m.paragraph-rotation(-20, -10);
+      }
+
+      &:nth-child(4) {
+        @include m.menu-item-styles(#f29222, 0s);
+        @include m.paragraph-rotation(-40, -20);
+      }
+
+      &:nth-child(5) {
+        @include m.menu-item-styles(#e95e50, 0.4s);
+        @include m.paragraph-rotation(10, -10);
+      }
+
+      &:nth-child(6) {
+        @include m.menu-item-styles(#936fac, 1s);
+        @include m.paragraph-rotation(50, 10);
+      }
+    }
+  }
+}
+
+// Submenu
+.submenu-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0cb2af;
+  z-index: 10000;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+
+  &.active {
+    display: block;
+    opacity: 1;
+    animation: modalEntrance 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &.closing {
+    animation: modalExit 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+  }
+
+  .content {
+    position: relative;
+    height: 100%;
+    padding: 2rem;
+    color: rgb(37, 37, 37);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .header {
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 2rem;
+      width: 100%;
+
+      .title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-family: "Nova Mono";
+        border-bottom: solid 3px rgb(37, 37, 37);
+      }
+      .modal-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        .icon {
+          width: clamp(4rem, 7vw, 6rem);
+          transition: transform 0.3s ease-in-out;
+          &:hover {
+            transform: rotate(-20deg);
+          }
+        }
+      }
+    }
+
+    .submenu-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-medium);
+
+      .submenu-item {
+        font-size: clamp(1.5rem, 3vw, 3rem);
+        color: white;
+        // width: 100vw;
+        transition: transform 0.3s ease-in-out;
+        font-family: "Nova Mono";
+        // font-weight: bold;
+        cursor: pointer;
+        &:hover {
+          transform: rotate(-1deg);
+          color: rgb(37, 37, 37);
+          text-decoration: underline;
+          text-decoration-color: rgb(15, 15, 15);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1499px) {
+  header {
+    .menu-cont {
+      display: none;
+    }
+  }
+}
+@include m.animation;

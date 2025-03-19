@@ -1,0 +1,30 @@
+<div class="accordion" data-controller="accordion">
+  <!-- Accordion Panel 1 (Home) -->
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: white;">
+    <div class="panel" data-url="<%= home_path %>" aria-control="panel1-content" aria-expanded="true" data-action="click->accordion#toggle">
+      <div class="title">
+        <span>Load Home</span>
+      </div>
+      <!-- Optionally, preload the turbo-frame if this is the default active panel -->
+      <turbo-frame id="main-content"></turbo-frame>
+    </div>
+  </div>
+
+  <!-- Accordion Panel 2 (Visit Us) -->
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: #0cb2af;">
+    <div class="panel" data-url="<%= visitus_path %>" aria-control="panel2-content" aria-expanded="false" data-action="click->accordion#toggle">
+      <div class="title">
+        <span>Visit Us</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion Panel 3 (Our Traders) -->
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: #a1c65d;">
+    <div class="panel" data-url="<%= ourtraders_path %>" aria-control="panel3-content" aria-expanded="false" data-action="click->accordion#toggle">
+      <div class="title">
+        <span>Our Traders</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+@mixin paragraph-rotation($initial-rotate, $hover-rotate) {
+  p {
+    transform: rotate(#{$initial-rotate}deg);
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: rotate(#{$hover-rotate}deg);
+    }
+  }
+}
+
+@mixin menu-item-styles($bg-color, $anim-delay) {
+  background-color: $bg-color;
+  animation-delay: $anim-delay;
+}
+
+// Keyframe Animations
+@mixin animation {
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      //   transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      //   transform: translateY(0px);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      //   transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      //   transform: translateY(-10px);
+    }
+  }
+
+  @keyframes modalEntrance {
+    from {
+      clip-path: circle(0% at 50% 20%);
+    }
+    to {
+      clip-path: circle(150% at 50% 50%);
+    }
+  }
+
+  @keyframes modalExit {
+    from {
+      clip-path: circle(150% at 50% 50%);
+    }
+    to {
+      clip-path: circle(0% at 50% 20%);
+    }
+  }
+}
