@@ -8,7 +8,7 @@
 .accordion-panel {
   position: relative;
   isolation: isolate;
-  width: clamp(1rem, 4vw, 4rem);
+  width: clamp(1rem, 5vw, 5rem);
   height: 100vh;
   transition: max-height 0.3s ease-out, width 0.3s ease-out;
 }
@@ -39,6 +39,27 @@
     text-align: center;
     height: 100%;
     width: 100%;
+    transition: transform 0.1s ease-in-out;
+  }
+
+  .title:hover {
+    animation: shake 0.5s ease-in-out;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
   }
 }
 
