@@ -65,31 +65,31 @@ header {
       animation: fadeIn 1s forwards;
 
       @include m.menu-item-styles(#0cb2af, 0.8s);
-      @include m.paragraph-rotation(-50, -20);
+      @include m.paragraph-rotation(-50, 0);
 
       &:nth-child(2) {
         @include m.menu-item-styles(#a1c65d, 0.2s);
-        @include m.paragraph-rotation(15, -8);
+        @include m.paragraph-rotation(15, 0);
       }
 
       &:nth-child(3) {
         @include m.menu-item-styles(#fac723, 0.6s);
-        @include m.paragraph-rotation(-20, -10);
+        @include m.paragraph-rotation(-20, 0);
       }
 
       &:nth-child(4) {
         @include m.menu-item-styles(#f29222, 0s);
-        @include m.paragraph-rotation(-40, -20);
+        @include m.paragraph-rotation(-40, 0);
       }
 
       &:nth-child(5) {
         @include m.menu-item-styles(#e95e50, 0.4s);
-        @include m.paragraph-rotation(10, -10);
+        @include m.paragraph-rotation(70, 0);
       }
 
       &:nth-child(6) {
         @include m.menu-item-styles(#936fac, 1s);
-        @include m.paragraph-rotation(50, 10);
+        @include m.paragraph-rotation(-15, 0);
       }
     }
   }
@@ -180,7 +180,7 @@ header {
   }
 }
 
-@media screen and (min-width: 1499px) {
+@media screen and (min-width: 1900px) {
   header {
     .menu-cont {
       display: none;

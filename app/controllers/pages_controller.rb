@@ -7,4 +7,16 @@ class PagesController < ApplicationController
 
   def ourtraders
   end
+
+  def becomeatrader
+  end
+
+  def eventstours
+  end
+
+  def news
+  end
+
+  def thenightmarket
+  end
 end

@@ -17,7 +17,7 @@ export default class extends Controller {
   }
 
   updateLayout() {
-    const isDesktop = window.innerWidth >= 1500;
+    const isDesktop = window.innerWidth >= 1900;
     this.mobileTarget.style.display = isDesktop ? "none" : "block";
 
     // Sync accordion after layout change
@@ -26,7 +26,7 @@ export default class extends Controller {
 
   handleTurboLoad = () => {
     // Sync accordion after any navigation
-    if (window.innerWidth >= 1500) this.syncDesktopAccordion();
+    if (window.innerWidth >= 1900) this.syncDesktopAccordion();
   };
 
   mirrorToMobile() {

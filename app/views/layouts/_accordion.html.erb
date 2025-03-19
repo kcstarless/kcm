@@ -3,7 +3,7 @@
   <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: white;">
     <div class="panel" data-url="<%= home_path %>" aria-control="panel1-content" aria-expanded="true" data-action="click->accordion#toggle">
       <div class="title">
-        <span>Load Home</span>
+        <span></span>
       </div>
       <!-- Optionally, preload the turbo-frame if this is the default active panel -->
       <turbo-frame id="main-content"></turbo-frame>
@@ -27,4 +27,37 @@
       </div>
     </div>
   </div>
+
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: #fac723;">
+    <div class="panel" data-url="<%= becomeatrader_path %>" aria-control="panel3-content" aria-expanded="false" data-action="click->accordion#toggle">
+      <div class="title">
+        <span>Become a Trader</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: #f29222;">
+    <div class="panel" data-url="<%= eventstours_path %>" aria-control="panel3-content" aria-expanded="false" data-action="click->accordion#toggle">
+      <div class="title">
+        <span>Events & Tours</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: #e95e50;">
+    <div class="panel" data-url="<%= news_path %>" aria-control="panel3-content" aria-expanded="false" data-action="click->accordion#toggle">
+      <div class="title">
+        <span>News</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: #936fac;">
+    <div class="panel" data-url="<%= thenightmarket_path %>" aria-control="panel3-content" aria-expanded="false" data-action="click->accordion#toggle">
+      <div class="title">
+        <span>The Night Market</span>
+      </div>
+    </div>
+  </div>
+
 </div>
