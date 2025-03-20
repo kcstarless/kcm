@@ -7,11 +7,10 @@
 // Layout
 @use "./layouts/header.scss";
 @use "./layouts/accordion";
+@use "./layouts/desktop_submenu";
 
 // Pages
-@use "./pages/home";
-@use "./pages/visitus";
-@use "./pages/ourtraders";
+@use "./pages/pages";
 
 // Components
 @use "./components/buttons";

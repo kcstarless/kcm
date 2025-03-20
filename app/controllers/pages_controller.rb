@@ -1,8 +1,10 @@
 class PagesController < ApplicationController
+  # Main menu pages
   def home
   end
 
   def visitus
+    render template: "pages/visitus/index"
   end
 
   def ourtraders
@@ -18,5 +20,10 @@ class PagesController < ApplicationController
   end
 
   def thenightmarket
+  end
+
+  # Visit Us Submenu pages
+  def parking
+    render "pages/visitus/parking"
   end
 end

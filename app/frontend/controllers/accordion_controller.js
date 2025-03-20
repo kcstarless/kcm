@@ -13,7 +13,7 @@ export default class extends Controller {
     this.panelContainerTargets.forEach((container) => {
       const panel = container.querySelector(".panel");
       const panelUrl = panel.dataset.url;
-      const isActive = panelUrl === currentPath;
+      const isActive = currentPath.startsWith(panelUrl);
       panel.setAttribute("aria-expanded", isActive);
       // If active, trigger loading content (if not loaded yet)
       if (isActive) {
@@ -41,25 +41,34 @@ export default class extends Controller {
 
   activatePanel(panel) {
     panel.setAttribute("aria-expanded", "true");
+    const currentPath = window.location.pathname;
+    const panelUrl = panel.dataset.url;
 
-    let frame = panel.querySelector("turbo-frame");
-    if (!frame) {
-      frame = document.createElement("turbo-frame");
-      frame.id = "main-content";
-      panel.appendChild(frame);
-    }
+    // Create or find frame
+    let frame = panel.querySelector("turbo-frame") || this.createFrame(panel);
 
-    // Only call Turbo.visit if this panel hasn't been loaded before.
-    if (!panel.dataset.loaded) {
+    // Determine URL to load (nested path or base panel URL)
+    const urlToLoad = currentPath.startsWith(panelUrl) ? currentPath : panelUrl;
+
+    // Always load if:
+    // 1. Never loaded before, or
+    // 2. Current path is different from what's loaded
+    if (!panel.dataset.loaded || panel.dataset.loadedUrl !== urlToLoad) {
       panel.dataset.loaded = "true";
-      const url = panel.dataset.url;
-      if (url && typeof Turbo !== "undefined") {
-        Turbo.visit(url, {
-          frame: "main-content",
-          action: "advance", // You can try "replace" if needed
-        });
-      }
+      panel.dataset.loadedUrl = urlToLoad;
+
+      Turbo.visit(urlToLoad, {
+        frame: "main-content",
+        action: "advance",
+      });
     }
+  }
+
+  createFrame(panel) {
+    const frame = document.createElement("turbo-frame");
+    frame.id = "main-content";
+    panel.appendChild(frame);
+    return frame;
   }
 
   deactivatePanel(panel) {

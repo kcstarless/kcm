@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["mobile"];
+  static targets = ["mobile", "desktop"];
 
   connect() {
     console.log("Layout controller connected");
@@ -17,18 +17,19 @@ export default class extends Controller {
   }
 
   updateLayout() {
-    const isDesktop = window.innerWidth >= 1900;
+    const isDesktop = window.innerWidth >= 1000;
     this.mobileTarget.style.display = isDesktop ? "none" : "block";
-
+    this.desktopTarget.style.display = isDesktop ? "block" : "none";
     // Sync accordion after layout change
     if (isDesktop) this.syncDesktopAccordion();
   }
 
   handleTurboLoad = () => {
     // Sync accordion after any navigation
-    if (window.innerWidth >= 1900) this.syncDesktopAccordion();
+    if (window.innerWidth >= 1000) this.syncDesktopAccordion();
   };
 
+  // Mirrors contents to mobile layout
   mirrorToMobile() {
     // Listen for Turbo Frame updates on the desktop frame
     this.handleFrameLoad = (event) => {
@@ -44,6 +45,7 @@ export default class extends Controller {
     document.addEventListener("turbo:frame-load", this.handleFrameLoad);
   }
 
+  // Syncs mobile content to desktop layout
   syncDesktopAccordion() {
     const currentPath = window.location.pathname;
     const panelLink = document.querySelector(

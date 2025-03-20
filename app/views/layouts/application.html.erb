@@ -24,12 +24,17 @@
   </head>
 
   <body data-controller="layout">
-      <%= render "layouts/header" %>
-      <%= render "layouts/accordion" %>
+      <%# Layout for desktop content %>
+      <div data-layout-target="desktop">
+        <%= render "layouts/accordion" %>
+      </div>
+
+      <%# Layout for mobile content %>
       <div data-layout-target="mobile">
+        <%= render "layouts/header" %>
         <main>
           <turbo-frame id="main-content-mobile" class="content">
-              <%= yield %>
+            <%= yield %>
           </turbo-frame>
         </main>
       </div>

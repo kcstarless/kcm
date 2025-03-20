@@ -57,14 +57,34 @@
                 <p>Our Traders</p>
             <% end %>
         </div>
-        <div class="menu-item"><p>Become a Trader</p></div>
-        <div class="menu-item"><p>Events & Tours</p></div>
-        <div class="menu-item"><p>News</p></div>
-        <div class="menu-item"><p>The Night Market</p></div>
+        <div class="menu-item">
+            <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "Become a Trader", color: "#fac723"
+             } do %>
+                <p>Become a Trader</p>
+            <% end %>
+        </div>
+        <div class="menu-item">
+            <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "Events & Tours", color: "#f29222"
+             } do %>
+                <p>Events & Tours</p>
+            <% end %>
+        </div>
+        <div class="menu-item">
+            <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "News", color: "#e95e50"
+             } do %>
+                <p>News</p>
+            <% end %>
+        </div>
+        <div class="menu-item">
+            <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "The Night Market", color: "#936fac"
+             } do %>
+                <p>The Night Market</p>
+            <% end %>
+        </div>
         <button data-action="click->header#toggleOpenMenu" class="btn close-1">✕</button>
         <button data-action="click->header#toggleOpenMenu" class="btn close-2">✕</button>
     </div>
-
+    
     <%# Submenu modal for mobile devices %>
     <div class="submenu-modal" data-submenu-target="submenuModal">
         <div class="content">
@@ -77,5 +97,6 @@
             </div>
         </div>
     </div>
+
 </header>
 

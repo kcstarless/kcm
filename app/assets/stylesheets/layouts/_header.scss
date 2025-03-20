@@ -180,11 +180,19 @@ header {
   }
 }
 
-@media screen and (min-width: 1900px) {
+@media screen and (min-width: 1000px) {
   header {
+    // z-index: 1;
+    position: flex;
     .menu-cont {
       display: none;
+      top: 0;
+      left: 0;
     }
   }
+
+  // .submenu-modal {
+  //   display: fixed;
+  // }
 }
 @include m.animation;

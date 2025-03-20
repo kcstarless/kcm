@@ -1,47 +1,26 @@
 import { Controller } from "@hotwired/stimulus";
-
-// List of submenu items for each menu item
-const submenuList = [
-  {
-    title: "Visit Us",
-    list: [
-      { title: "Visit Us", path: "/visitus", target: "visitus-content" },
-      { title: "Parking", path: "" },
-      { title: "Accessibility", path: "" },
-      { title: "Contact", path: "" },
-      { title: "Education", path: "" },
-      { title: "About", path: "" },
-      { title: "Sustainability", path: "" },
-      { title: "Restoring & Revitalising the Market", path: "" },
-    ],
-  },
-
-  {
-    title: "Our Traders",
-    list: [
-      {
-        title: "Meet Our Traders",
-        path: "/ourtraders",
-        target: "ourtraders-content",
-      },
-      { title: "Meet the Market's Freshest Face", path: "" },
-    ],
-  },
-];
+import { submenuList } from "./consts/submenuList"; // Adjust the path according to your project structure
 
 export default class extends Controller {
-  static targets = ["submenuModal", "submenuTitle", "submenuList"];
+  static targets = [
+    "submenuModal",
+    "submenuTitle",
+    "submenuList",
+    "desktopSubmenu",
+  ];
 
   connect() {
     console.log("Stimulus: submenu controller connected.");
+    this.injectDesktopSubmenu();
   }
+
   openSubmenu(e) {
     e.preventDefault();
 
     const color = e.currentTarget.dataset.color;
 
     if (color) {
-      this.submenuModalTarget.style.backgroundColor = color; // Apply parents background color
+      this.submenuModalTarget.style.backgroundColor = color; // Apply parent's background color
     }
 
     console.log("Triggered");
@@ -83,5 +62,10 @@ export default class extends Controller {
       },
       { once: true }
     );
+  }
+
+  injectDesktopSubmenu() {
+    const path = window.location.pathname;
+    console.log(path);
   }
 }
