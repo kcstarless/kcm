@@ -23,20 +23,9 @@
     <%= vite_javascript_tag 'application' %>
   </head>
 
-  <body data-controller="layout">
-      <%# Layout for desktop content %>
-      <div data-layout-target="desktop">
+  <body>
+      <main>
         <%= render "layouts/accordion" %>
-      </div>
-
-      <%# Layout for mobile content %>
-      <div data-layout-target="mobile">
-        <%= render "layouts/header" %>
-        <main>
-          <turbo-frame id="main-content-mobile" class="content">
-            <%= yield %>
-          </turbo-frame>
-        </main>
-      </div>
+      </main>
   </body>
 </html>
