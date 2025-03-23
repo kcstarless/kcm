@@ -23,7 +23,7 @@
 
   // Responsive font sizes system
   --font-size-xsmall: clamp(0.75rem, 2vw, 1rem);
-  --font-size-small: clamp(1rem, 2.5vw, 2rem);
+  --font-size-small: clamp(1rem, 2.5vw, 1.5rem);
   --font-size-medium: clamp(2rem, 4vw, 3rem);
   --font-size-large: clamp(3rem, 6vw, 4rem);
   --font-size-xlarge: clamp(4rem, 8vw, 5rem);
@@ -48,6 +48,12 @@
   --color-primary-rotate: hsl(10, 73%, 54%);
   --color-secondary: rgb(247, 238, 199);
   --color-secondary-rotate: hsl(120, 45%, 56%);
+  --color-acc-1: #0cb2af;
+  --color-acc-2: #a1c65d;
+  --color-acc-3: #fac723;
+  --color-acc-4: #f29222;
+  --color-acc-5: #e95e50;
+  --color-acc-6: #936fac;
 
   // Border radius
   --border-radius: 0.375rem;

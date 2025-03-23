@@ -2,6 +2,7 @@
 
 // Header bar
 header {
+  z-index: 1;
   .logo-cont {
     .logo {
       width: clamp(5rem, 5vw, 7rem);
@@ -64,31 +65,31 @@ header {
       opacity: 0;
       animation: fadeIn 1s forwards;
 
-      @include m.menu-item-styles(#0cb2af, 0.8s);
+      @include m.menu-item-styles(var(--color-acc-1), 0.8s);
       @include m.paragraph-rotation(-50, 0);
 
       &:nth-child(2) {
-        @include m.menu-item-styles(#a1c65d, 0.2s);
+        @include m.menu-item-styles(var(--color-acc-2), 0.2s);
         @include m.paragraph-rotation(15, 0);
       }
 
       &:nth-child(3) {
-        @include m.menu-item-styles(#fac723, 0.6s);
+        @include m.menu-item-styles(var(--color-acc-3), 0.6s);
         @include m.paragraph-rotation(-20, 0);
       }
 
       &:nth-child(4) {
-        @include m.menu-item-styles(#f29222, 0s);
+        @include m.menu-item-styles(var(--color-acc-4), 0s);
         @include m.paragraph-rotation(-40, 0);
       }
 
       &:nth-child(5) {
-        @include m.menu-item-styles(#e95e50, 0.4s);
+        @include m.menu-item-styles(var(--color-acc-5), 0.4s);
         @include m.paragraph-rotation(70, 0);
       }
 
       &:nth-child(6) {
-        @include m.menu-item-styles(#936fac, 1s);
+        @include m.menu-item-styles(var(--color-acc-6), 1s);
         @include m.paragraph-rotation(-15, 0);
       }
     }
@@ -180,10 +181,14 @@ header {
   }
 }
 
+// Submenu desktop
+.submenu-desktop {
+  display: none;
+}
+
 @media screen and (min-width: 1000px) {
   header {
-    // z-index: 1;
-    position: flex;
+    display: none;
     .menu-cont {
       display: none;
       top: 0;
@@ -191,8 +196,63 @@ header {
     }
   }
 
-  // .submenu-modal {
-  //   display: fixed;
-  // }
+  .submenu-desktop {
+    position: absolute;
+    z-index: 1000;
+    padding: var(--space-medium);
+    display: block;
+    width: 100%;
+    // border: solid 1px black;
+    // opacity: 0;
+    // animation: fadeIn 0.3s ease-out 0.3s forwards;
+    .submenu-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      align-items: center;
+      gap: 2vw;
+
+      // border: solid 1px black;
+    }
+
+    .submenu-logo {
+      .logo {
+        width: clamp(4rem, 7vw, 6rem);
+      }
+    }
+
+    .submenu-search-shop {
+      display: flex;
+      margin-left: auto;
+      // border: solid 1px black;
+      .icon {
+        width: clamp(2rem, 7vw, 4rem);
+        transition: transform 0.3s ease-in-out;
+        &:hover {
+          transform: rotate(-20deg);
+        }
+      }
+    }
+
+    .submenu-list {
+      display: flex;
+      gap: 2vw;
+      .submenu-item {
+        // border: solid 1px black;
+        font-size: 1.3rem;
+        transition: transform 0.3s ease-in-out;
+        // font-weight: bold;
+        // font-family: "Marcellus";
+        transform: rotate(-5deg);
+        &:hover {
+          transform: rotate(0deg);
+          // color: rgb(37, 37, 37);
+          text-decoration-color: rgb(15, 15, 15);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }
+
 @include m.animation;

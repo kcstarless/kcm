@@ -1,17 +1,12 @@
 import { Controller } from "@hotwired/stimulus";
-import { submenuList } from "./consts/submenuList"; // Adjust the path according to your project structure
+import { menu } from "./consts/const_menu"; // Adjust the path according to your project structure
 
 export default class extends Controller {
-  static targets = [
-    "submenuModal",
-    "submenuTitle",
-    "submenuList",
-    "desktopSubmenu",
-  ];
+  static targets = ["modal", "title", "list", "desktopSubmenu"];
 
   connect() {
     console.log("Stimulus: submenu controller connected.");
-    this.injectDesktopSubmenu();
+    this.desktopSubmenuBar();
   }
 
   openSubmenu(e) {
@@ -20,52 +15,69 @@ export default class extends Controller {
     const color = e.currentTarget.dataset.color;
 
     if (color) {
-      this.submenuModalTarget.style.backgroundColor = color; // Apply parent's background color
+      this.modalTarget.style.backgroundColor = color; // Apply parent's background color
     }
 
-    console.log("Triggered");
-    this.submenuModalTarget.classList.add("active");
+    this.modalTarget.classList.add("active");
 
-    const submenuTitle = e.currentTarget.dataset.title; // e.g. "Visit Us"
-    const submenuData = submenuList.find(
-      (submenu) => submenu.title === submenuTitle
-    );
-
-    if (submenuData) {
-      // Parent menu title menu
-      this.submenuTitleTarget.textContent = submenuData.title;
-      // Display submenu
-      const list = submenuData.list
-        .map((menu) => {
-          return `<div class="submenu-item">
-                    <a href="${menu.path}" 
-                        data-turbo-frame="main-content-mobile" 
-                        data-action="click->submenu#closeSubmenu click->header#closeMenu" 
-                        data-turbo-action="advance">
-                        <p>${menu.title}</p>
-                    </a>    
-                </div>`;
-        })
-        .join("");
-      this.submenuListTarget.innerHTML = list;
-    }
+    const title = e.currentTarget.dataset.title; // e.g. "Visit Us"
+    const submenuList = menu.find((submenu) => submenu.title === title);
+    // Parent menu title menu
+    this.titleTarget.textContent = submenuList.title;
+    this.submenu(submenuList, false);
   }
 
-  closeSubmenu() {
-    this.submenuModalTarget.classList.add("closing");
+  closeSubmenu(e) {
+    const url = e.currentTarget.href;
+    console.log(url);
+
+    const submenuLinkEvent = new CustomEvent("submenuLinkedClicked", {
+      detail: { url },
+    });
+    document.dispatchEvent(submenuLinkEvent);
+
+    this.modalTarget.classList.add("closing");
 
     // Listen for the end of the animation to hide the modal
-    this.submenuModalTarget.addEventListener(
+    this.modalTarget.addEventListener(
       "animationend",
       () => {
-        this.submenuModalTarget.classList.remove("active", "closing");
+        this.modalTarget.classList.remove("active", "closing");
       },
       { once: true }
     );
   }
 
-  injectDesktopSubmenu() {
+  desktopSubmenuBar() {
     const path = window.location.pathname;
-    console.log(path);
+    const pathSegments = path.split("/").filter((segment) => segment);
+    const submenuPath = pathSegments.length > 0 ? `/${pathSegments[0]}` : "/"; // Grab only first part of path eg. /visitus
+    const submenuList = menu.find((submenu) => submenu.path === submenuPath);
+
+    this.submenu(submenuList, true);
+  }
+
+  // Submenu list for each main menu
+  submenu(submenuList, isDesktop) {
+    if (submenuList) {
+      // Display submenu
+      const list = submenuList.list
+        .map((menu) => {
+          return `<div class="submenu-item">
+                      <a href="${menu.path}" 
+                          data-turbo-frame="${submenuList.frame}" 
+                          ${
+                            !isDesktop &&
+                            'data-action="click->submenu#closeSubmenu click->header#closeMenu"'
+                          } 
+                          data-turbo-action="advance"
+                          class="submenu-link">
+                          <p>${menu.title}</p>
+                      </a>    
+                  </div>`;
+        })
+        .join("");
+      this.listTarget.innerHTML = list;
+    }
   }
 }

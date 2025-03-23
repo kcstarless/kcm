@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ["content"];
 
   connect() {
+    console.log("Stimulus: fade controller connected.");
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

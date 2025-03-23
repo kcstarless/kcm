@@ -15,7 +15,7 @@
 }
 
 // Keyframe Animations
-@mixin animation {
+@mixin animation() {
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -53,6 +53,43 @@
     }
     to {
       clip-path: circle(0% at 50% 20%);
+    }
+  }
+
+  // Shake panel title on hover
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-5px);
+    }
+    50% {
+      transform: translateX(5px);
+    }
+    75% {
+      transform: translateX(-5px);
+    }
+  }
+
+  /* Keyframe for rotating and hiding panel title */
+  @keyframes rotateAndHide {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Keyframe for changing writing mode on panel title */
+  @keyframes changeWritingMode {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-90deg);
     }
   }
 }

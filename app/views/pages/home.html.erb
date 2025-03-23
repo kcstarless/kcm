@@ -1,6 +1,21 @@
-
-<!-- Desktop Layout -->
-<turbo-frame id="main-content">
+<turbo-frame id="home-content">
     <%= render "pages/shared/submenu" %>
-    <%= render partial: "home_content" %>
+    <div class="page home">
+        <div class="page-container">
+            <div class="page-banner">
+                <%= video_tag("QVM.mp4", class: "video landing-video", autoplay: true, loop: true, muted: true) %>
+                <div class="page-banner-title">
+                    <h1>Welcome to</h1>
+                    <h1>King Charles Market</h1>
+                </div>
+            </div>
+            <div class="page-events">
+                <%= image_tag("home_banner.jpg", class: "img home-banner") %>
+                <%= image_tag("home_banner.jpg", class: "img home-banner") %>
+                <%= image_tag("home_banner.jpg", class: "img home-banner") %>
+                <%= image_tag("home_banner.jpg", class: "img home-banner") %>
+                <%= image_tag("home_banner.jpg", class: "img home-banner") %>
+            </div>
+        </div>
+    </div>
 </turbo-frame>

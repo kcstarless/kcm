@@ -1,3 +1,41 @@
-<div class="desktop-submenu" data-submenu-target="desktopSubmenu" >
-    <p>Hello</p>
+<div class="submenu-desktop" data-controller="submenu accordion">
+    <div class="submenu-container">
+        <%= link_to home_path do %>
+            <%= image_tag("logo_dark_tilt.svg", 
+                alt: "Your Logo", 
+                class: "logo",
+                data: { 
+                    header_target: "logo",
+                    dark_path: asset_path("logo_dark_tilt.svg"),
+                    light_path: asset_path("logo_light_tilt.svg")
+                }) %>
+        <% end %>
+        <div class="submenu-list" data-submenu-target="list"></div>
+
+        <div class="submenu-search-shop" data-submenu-target="title">
+            <%= link_to "#" do %>
+                <%= image_tag("icons/icon_search.svg", 
+                    alt: "Search Icon", 
+                    class: "icon",
+                    data: { 
+                        header_target: "searchIcon",
+                        dark_path: asset_path("icons/icon_search.svg"),
+                        light_path: asset_path("icons/icon_search_light.svg")
+                    }
+                ) %>
+            <% end %>
+
+            <%= link_to "#" do %>
+                <%= image_tag("icons/icon_shopping.svg", 
+                    alt: "Shopping Icon", 
+                    class: "icon",
+                    data: { 
+                        header_target: "shoppingIcon",
+                        dark_path: asset_path("icons/icon_shopping.svg"),
+                        light_path: asset_path("icons/icon_shopping_light.svg")
+                    }
+                ) %>
+            <% end %>
+        </div>
+    </div>
 </div>

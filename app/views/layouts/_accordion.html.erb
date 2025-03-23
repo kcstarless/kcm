@@ -1,63 +1,99 @@
+
+<%# Desktop Accordion Menu%>
 <div class="accordion" data-controller="accordion">
   <!-- Accordion Panel 1 (Home) -->
   <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: white;">
-    <div class="panel" data-url="<%= home_path %>" aria-control="panel1-content" aria-expanded="true" data-action="click->accordion#toggle">
-      <div class="title">
-        <span></span>
+    <div class="panel" data-url="<%= home_path %>" aria-controls="home-content" aria-expanded="true" data-action="click->accordion#toggle">
+      <%= link_to home_path, data: { turbo_frame: "home-content", turbo_action: "advance" }, class: "panel-link" do %>
+        <div class="title">
+            <%= image_tag("logo_dark_tilt.svg", 
+                alt: "KCM Logo", 
+                class: "logo",
+                data: { 
+                    header_target: "logo",
+                    dark_path: asset_path("logo_dark_tilt.svg"),
+                    light_path: asset_path("logo_light_tilt.svg")
+                }) %>
+        </div>
+      <% end %>
+      <!-- Preload the turbo-frame for the active panel -->
+      <turbo-frame id="home-content" class="content"></turbo-frame>
       </div>
-      <!-- Optionally, preload the turbo-frame if this is the default active panel -->
-      <turbo-frame id="main-content"></turbo-frame>
-    </div>
   </div>
 
   <!-- Accordion Panel 2 (Visit Us) -->
-  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: #0cb2af;">
-    <div class="panel" data-url="<%= visitus_path %>" aria-control="panel2-content" aria-expanded="false" data-action="click->accordion#toggle">
-      <div class="title">
-        <span>Visit Us</span>
-      </div>
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: var(--color-acc-1);">
+    <div class="panel" data-url="<%= visitus_path %>" aria-controls="visitus-content" aria-expanded="false" data-action="click->accordion#toggle">
+      <%= link_to visitus_path, data: { turbo_frame: "visitus-content", turbo_action: "advance" }, class: "panel-link" do %>
+        <div class="title"> 
+            <span>Visit Us</span>
+        </div>
+      <% end %>
+      <turbo-frame id="visitus-content" class="content"></turbo-frame>
     </div>
   </div>
 
   <!-- Accordion Panel 3 (Our Traders) -->
-  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: #a1c65d;">
-    <div class="panel" data-url="<%= ourtraders_path %>" aria-control="panel3-content" aria-expanded="false" data-action="click->accordion#toggle">
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: var(--color-acc-2);">
+ 
+    <div class="panel" data-url="<%= ourtraders_path %>" aria-controls="ourtraders-content" aria-expanded="false" data-action="click->accordion#toggle">
+    <%= link_to ourtraders_path, data: { turbo_frame: "ourtraders-content", turbo_action: "advance" }, class: "panel-link" do %>
       <div class="title">
-        <span>Our Traders</span>
+          <span>Our Traders</span>
       </div>
+    <% end %>
+      <turbo-frame id="ourtraders-content" class="content"></turbo-frame>
+    </div>
+
+  </div>
+
+  <!-- Accordion Panel 4 (Become a Trader) -->
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: var(--color-acc-3);">
+    <div class="panel" data-url="<%= becomeatrader_path %>" aria-controls="becomeatrader-content" aria-expanded="false" data-action="click->accordion#toggle">
+      <%= link_to becomeatrader_path, data: { turbo_frame: "becomeatrader-content", turbo_action: "advance" }, class: "panel-link" do %>
+        <div class="title">
+            <span>Become a Trader</span>
+        </div>
+      <% end %>
+      <turbo-frame id="becomeatrader-content" class="content"></turbo-frame>
+    </div>
+
+  </div>
+
+  <!-- Accordion Panel 5 (Events & Tours) -->
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: var(--color-acc-4);">
+    <div class="panel" data-url="<%= eventstours_path %>" aria-controls="eventstours-content" aria-expanded="false" data-action="click->accordion#toggle">
+      <%= link_to eventstours_path, data: { turbo_frame: "eventstours-content", turbo_action: "advance" }, class: "panel-link" do %>
+      <div class="title">
+          <span>Events & Tours</span>
+      </div>
+      <% end %>
+      <turbo-frame id="eventstours-content" class="content"></turbo-frame>
     </div>
   </div>
 
-  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: #fac723;">
-    <div class="panel" data-url="<%= becomeatrader_path %>" aria-control="panel3-content" aria-expanded="false" data-action="click->accordion#toggle">
+  <!-- Accordion Panel 6 (News) -->
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: var(--color-acc-5);">
+    <div class="panel" data-url="<%= news_path %>" aria-controls="news-content" aria-expanded="false" data-action="click->accordion#toggle">
+      <%= link_to news_path, data: { turbo_frame: "news-content", turbo_action: "advance" }, class: "panel-link" do %>
       <div class="title">
-        <span>Become a Trader</span>
+          <span>News</span>
       </div>
+      <% end %>
+      <turbo-frame id="news-content" class="content"></turbo-frame>
     </div>
+
   </div>
 
-  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: #f29222;">
-    <div class="panel" data-url="<%= eventstours_path %>" aria-control="panel3-content" aria-expanded="false" data-action="click->accordion#toggle">
+  <!-- Accordion Panel 7 (The Night Market) -->
+  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: var(--color-acc-6)">
+    <div class="panel" data-url="<%= thenightmarket_path %>" aria-controls="thenightmarket-content" aria-expanded="false" data-action="click->accordion#toggle">
+      <%= link_to thenightmarket_path, data: { turbo_frame: "thenightmarket-content", turbo_action: "advance" }, class: "panel-link" do %>
       <div class="title">
-        <span>Events & Tours</span>
+          <span>The Night Market</span>
       </div>
+      <% end %>
+      <turbo-frame id="thenightmarket-content" class="content"></turbo-frame>
     </div>
   </div>
-
-  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: #e95e50;">
-    <div class="panel" data-url="<%= news_path %>" aria-control="panel3-content" aria-expanded="false" data-action="click->accordion#toggle">
-      <div class="title">
-        <span>News</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: #936fac;">
-    <div class="panel" data-url="<%= thenightmarket_path %>" aria-control="panel3-content" aria-expanded="false" data-action="click->accordion#toggle">
-      <div class="title">
-        <span>The Night Market</span>
-      </div>
-    </div>
-  </div>
-
 </div>

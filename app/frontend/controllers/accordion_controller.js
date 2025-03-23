@@ -5,7 +5,19 @@ export default class extends Controller {
 
   connect() {
     this.initializePanels();
-    document.addEventListener("turbo:load", this.initializePanels.bind(this));
+    // Event listener from submenu
+    document.addEventListener(
+      "submenuLinkedClicked",
+      this.handleSubmenuLinkClicked.bind(this)
+    );
+  }
+
+  disconnect() {
+    // Clean up the event listener
+    document.removeEventListener(
+      "submenuLinkClicked",
+      this.handleSubmenuLinkClicked.bind(this)
+    );
   }
 
   initializePanels() {
@@ -15,17 +27,27 @@ export default class extends Controller {
       const panelUrl = panel.dataset.url;
       const isActive = currentPath.startsWith(panelUrl);
       panel.setAttribute("aria-expanded", isActive);
+
       // If active, trigger loading content (if not loaded yet)
       if (isActive) {
         this.activatePanel(panel);
+        // const link = container.querySelector("a");
+        // if (link) {
+        //   link.click(); // Active content inside the accordion panel
+        // }
       } else {
         this.deactivatePanel(panel);
       }
     });
   }
 
+  // Home logo toggle
+  toggleHome() {
+    window.location.href = "/home";
+  }
+
+  // Active a panel
   toggle(event) {
-    event.preventDefault();
     const clickedPanel = event.currentTarget;
     if (clickedPanel.getAttribute("aria-expanded") === "true") return;
 
@@ -40,41 +62,42 @@ export default class extends Controller {
   }
 
   activatePanel(panel) {
-    panel.setAttribute("aria-expanded", "true");
     const currentPath = window.location.pathname;
-    const panelUrl = panel.dataset.url;
-
-    // Create or find frame
-    let frame = panel.querySelector("turbo-frame") || this.createFrame(panel);
-
-    // Determine URL to load (nested path or base panel URL)
-    const urlToLoad = currentPath.startsWith(panelUrl) ? currentPath : panelUrl;
-
-    // Always load if:
-    // 1. Never loaded before, or
-    // 2. Current path is different from what's loaded
-    if (!panel.dataset.loaded || panel.dataset.loadedUrl !== urlToLoad) {
-      panel.dataset.loaded = "true";
-      panel.dataset.loadedUrl = urlToLoad;
-
-      Turbo.visit(urlToLoad, {
-        frame: "main-content",
-        action: "advance",
-      });
+    panel.setAttribute("aria-expanded", "true");
+    const frameId = panel.getAttribute("aria-controls");
+    const frame = document.getElementById(frameId);
+    if (frame && !frame.innerHTML.trim()) {
+      // Set the content of frame to current path
+      frame.src = currentPath;
     }
-  }
-
-  createFrame(panel) {
-    const frame = document.createElement("turbo-frame");
-    frame.id = "main-content";
-    panel.appendChild(frame);
-    return frame;
   }
 
   deactivatePanel(panel) {
     panel.setAttribute("aria-expanded", "false");
-    // Clear the loaded flag if you want to allow reloading on reactivation
-    panel.dataset.loaded = "";
-    panel.querySelector("turbo-frame")?.remove();
+    const content = panel.querySelector(".content");
+    if (content) {
+      content.innerHTML = "";
+    }
+  }
+
+  handleSubmenuLinkClicked(e) {
+    const url = new URL(e.detail.url);
+    const path = url.pathname;
+    this.activatePanelByPath(path);
+  }
+
+  // Mobile submenu activation trigger
+  activatePanelByPath(path) {
+    this.panelContainerTargets.forEach((container) => {
+      const panel = container.querySelector(".panel");
+      const panelUrl = panel.dataset.url;
+      const isActive = path.startsWith(panelUrl);
+
+      if (isActive) {
+        this.activatePanel(panel);
+      } else {
+        this.deactivatePanel(panel);
+      }
+    });
   }
 }

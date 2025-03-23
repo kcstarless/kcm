@@ -1,33 +1,68 @@
 .page {
-  padding: 5vh;
-  padding-top: 15vh;
-  border: solid 1px black;
-  height: 100vh;
+  // padding-top: 5vh;
+  // padding: 5vw;
+  // border: solid 1px black;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  scrollbar-width: none;
+  // padding: 1vw;
+
+  h1 {
+    font-size: 10rem;
+    color: rgba(237, 237, 237, 0.632);
+    display: flex;
+    justify-content: end;
+  }
+
+  animation: fadeIn 0.6s ease-out 0.6s forwards;
 }
 
 .home {
+  overflow-y: auto;
+  .page-banner {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+
+    .page-banner-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      h1 {
+        color: white;
+      }
+    }
+  }
+
+  .page-events {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1vw; // Optional: adjust spacing between columns
+  }
 }
 
 .visitus {
-  background-color: #0cb2af;
+  background-color: var(--color-acc-1);
 }
 
 .ourtraders {
-  background-color: #a1c65d;
+  background-color: var(--color-acc-2);
 }
 
 .becomeatrader {
-  background-color: #fac723;
+  background-color: var(--color-acc-3);
 }
 
 .eventstours {
-  background-color: #f29222;
+  background-color: var(--color-acc-4);
 }
 
 .news {
-  background-color: #e95e50;
+  background-color: var(--color-acc-5);
 }
 
 .thenightmarket {
-  background-color: #936fac;
+  background-color: var(--color-acc-6);
 }

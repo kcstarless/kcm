@@ -7,21 +7,40 @@
 
 .accordion-panel {
   position: relative;
-  isolation: isolate;
-  width: clamp(1rem, 5vw, 5rem);
+  // isolation: isolate;
+  // --collapsed-width: clamp(1rem, 5vw, 5rem);
+  // width: var(--collapsed-width);
+  width: 3vw;
   height: 100vh;
   transition: max-height 0.3s ease-out, width 0.3s ease-out;
+  .panel {
+    position: sticky;
+  }
 }
 
 .accordion-panel:has([aria-expanded="true"]) {
   max-height: 100%; /* Adjust based on content size */
-  width: 100%;
+  // width: calc(100vw - (6 * var(--collapsed-width)));
+  width: 82vw;
+
   .panel {
     cursor: default;
+
+    .panel-link {
+      pointer-events: none;
+    }
+
     .title {
       animation: changeWritingMode 0.5s forwards,
-        rotateAndHide 1.5s 0.5s forwards;
+        rotateAndHide 0.5s 0.5s forwards;
     }
+
+    // .title-logo {
+    //   padding-left: 10px;
+    //   .logo {
+    //     width: clamp(2rem, 7vw, 4rem);
+    //   }
+    // }
   }
 }
 
@@ -40,51 +59,41 @@
     height: 100%;
     width: 100%;
     transition: transform 0.1s ease-in-out;
+    .logo {
+      width: 3vw;
+    }
   }
+  // .title-logo {
+  //   position: absolute;
+  //   display: flex;
+  //   justify-content: start;
+  //   align-items: start;
+  //   padding-top: 10px;
+  //   height: 100%;
+  //   width: 100%;
+  //   .logo {
+  //     justify-self: center;
+  //     width: 3vw;
+  //   }
+  // }
 
   .title:hover {
     animation: shake 0.5s ease-in-out;
   }
 }
 
-@keyframes shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-5px);
-  }
-  50% {
-    transform: translateX(5px);
-  }
-  75% {
-    transform: translateX(-5px);
-  }
-}
-
-/* Keyframe for rotating and hiding the title */
-@keyframes rotateAndHide {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/* Keyframe for changing writing mode */
-@keyframes changeWritingMode {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(-90deg);
-  }
-}
-
 @media screen and (max-width: 1000px) {
   .accordion {
-    display: none;
+    .accordion-panel {
+      width: 100vw;
+      height: 100vh;
+      transition: max-height 0.3s ease-out, width 0.3s ease-out;
+    }
+    .accordion-panel:has([aria-expanded="false"]) {
+      display: none;
+    }
+    .accordion-panel:has([aria-expanded="true"]) {
+      display: block;
+    }
   }
 }
