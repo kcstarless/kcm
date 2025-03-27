@@ -215,10 +215,8 @@ header {
       // border: solid 1px black;
     }
 
-    .submenu-logo {
-      .logo {
-        width: clamp(4rem, 7vw, 6rem);
-      }
+    .logo {
+      width: clamp(4rem, 5vw, 5rem);
     }
 
     .submenu-search-shop {

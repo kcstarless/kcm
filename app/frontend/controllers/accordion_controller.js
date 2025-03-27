@@ -10,12 +10,16 @@ export default class extends Controller {
       "submenuLinkedClicked",
       this.handleSubmenuLinkClicked.bind(this)
     );
+
+    this.element.addEventListener("activateHomePanel", () => {
+      this.activateHomePanel();
+    });
   }
 
   disconnect() {
     // Clean up the event listener
     document.removeEventListener(
-      "submenuLinkClicked",
+      "submenuLinkedClicked",
       this.handleSubmenuLinkClicked.bind(this)
     );
   }
@@ -39,11 +43,6 @@ export default class extends Controller {
         this.deactivatePanel(panel);
       }
     });
-  }
-
-  // Home logo toggle
-  toggleHome() {
-    window.location.href = "/home";
   }
 
   // Active a panel
@@ -70,13 +69,18 @@ export default class extends Controller {
       // Set the content of frame to current path
       frame.src = currentPath;
     }
+    const content = panel.querySelector(".content");
+    if (content) {
+      content.style.visibility = "visible"; // Shows the content
+    }
   }
 
   deactivatePanel(panel) {
     panel.setAttribute("aria-expanded", "false");
     const content = panel.querySelector(".content");
+    console.log(content);
     if (content) {
-      content.innerHTML = "";
+      content.style.visibility = "hidden"; // Hides the content without affecting layout
     }
   }
 
@@ -99,5 +103,26 @@ export default class extends Controller {
         this.deactivatePanel(panel);
       }
     });
+  }
+
+  // Home icon click event
+  activateHomePanel() {
+    // Query for the home panel link inside the accordion element
+    const homePanelLink = document.querySelector(
+      ".accordion .accordion-panel:first-child .panel a"
+    );
+    const homePanel = document.querySelector(
+      ".accordion .accordion-panel:first-child .panel"
+    );
+    const currentPanel = document.querySelector(".panel[aria-expanded=true]");
+    if (currentPanel) {
+      this.deactivatePanel(currentPanel);
+    }
+    if (homePanel) {
+      this.activatePanel(homePanel);
+    }
+    if (homePanelLink) {
+      homePanelLink.click();
+    }
   }
 }

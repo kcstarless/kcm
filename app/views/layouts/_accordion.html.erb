@@ -3,7 +3,7 @@
 <div class="accordion" data-controller="accordion">
   <!-- Accordion Panel 1 (Home) -->
   <div class="accordion-panel" data-accordion-target="panelContainer" style="background-color: white;">
-    <div class="panel" data-url="<%= home_path %>" aria-controls="home-content" aria-expanded="true" data-action="click->accordion#toggle">
+    <div class="panel" data-url="<%= home_path %>" aria-controls="home-content" aria-expanded="true" data-action="click->accordion#activateHomePanel">
       <%= link_to home_path, data: { turbo_frame: "home-content", turbo_action: "advance" }, class: "panel-link" do %>
         <div class="title">
             <%= image_tag("logo_dark_tilt.svg", 
