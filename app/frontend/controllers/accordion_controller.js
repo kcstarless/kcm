@@ -47,17 +47,30 @@ export default class extends Controller {
 
   // Active a panel
   toggle(event) {
-    const clickedPanel = event.currentTarget;
-    if (clickedPanel.getAttribute("aria-expanded") === "true") return;
+    const clickedElement = event.currentTarget;
+    const panelUrl = clickedElement.dataset.url; // Get the panel URL from the data attribute
 
-    // Deactivate all panels.
-    this.panelContainerTargets.forEach((container) => {
-      const panel = container.querySelector(".panel");
+    if (!panelUrl) {
+      console.error("No panel URL specified for this submenu link.");
+      return;
+    }
+
+    // Find the corresponding panel using the data-url attribute
+    const panel = document.querySelector(`.panel[data-url="${panelUrl}"]`);
+
+    if (!panel) {
+      console.error(`No panel found with URL: ${panelUrl}`);
+      return;
+    }
+    console.log(this.panelContainerTargets);
+    // Deactivate all panels
+    const allPanels = document.querySelectorAll(".panel");
+    allPanels.forEach((panel) => {
       this.deactivatePanel(panel);
     });
 
-    // Activate the clicked panel.
-    this.activatePanel(clickedPanel);
+    // Always activate the clicked panel
+    this.activatePanel(panel);
   }
 
   activatePanel(panel) {
@@ -76,14 +89,19 @@ export default class extends Controller {
   }
 
   deactivatePanel(panel) {
+    if (!panel) {
+      console.error("Panel is null or undefined in deactivatePanel.");
+      return;
+    }
+    // console.log("Deactivating panel:", panel);
     panel.setAttribute("aria-expanded", "false");
     const content = panel.querySelector(".content");
-    console.log(content);
     if (content) {
       content.style.visibility = "hidden"; // Hides the content without affecting layout
     }
   }
 
+  // Mobile submenu click event
   handleSubmenuLinkClicked(e) {
     const url = new URL(e.detail.url);
     const path = url.pathname;
@@ -103,26 +121,5 @@ export default class extends Controller {
         this.deactivatePanel(panel);
       }
     });
-  }
-
-  // Home icon click event
-  activateHomePanel() {
-    // Query for the home panel link inside the accordion element
-    const homePanelLink = document.querySelector(
-      ".accordion .accordion-panel:first-child .panel a"
-    );
-    const homePanel = document.querySelector(
-      ".accordion .accordion-panel:first-child .panel"
-    );
-    const currentPanel = document.querySelector(".panel[aria-expanded=true]");
-    if (currentPanel) {
-      this.deactivatePanel(currentPanel);
-    }
-    if (homePanel) {
-      this.activatePanel(homePanel);
-    }
-    if (homePanelLink) {
-      homePanelLink.click();
-    }
   }
 }

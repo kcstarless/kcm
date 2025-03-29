@@ -6,10 +6,13 @@
   width: 100%;
   opacity: 0;
   scrollbar-width: none;
+  position: relative;
   // padding: 1vw;
 
   h1 {
-    padding-top: 5vh;
+    position: absolute;
+    bottom: 1vw;
+    right: 1vw;
     font-size: clamp(5rem, 6vw, 8rem);
     color: rgba(237, 237, 237, 0.632);
     display: flex;
@@ -77,5 +80,9 @@
 }
 
 .thenightmarket {
+  background-color: var(--color-acc-6);
+}
+
+.shop {
   background-color: var(--color-acc-6);
 }

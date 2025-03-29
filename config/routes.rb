@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resource :session
+  resources :passwords, param: :token
+  resources :registrations, only: [ :new, :create ]
+
+  # Routes for all pages
   root to: redirect("/home")
   get "home", to: "pages#home", as: "home"
 
@@ -25,5 +30,9 @@ Rails.application.routes.draw do
 
   scope path: "/thenightmarket" do
     get "/", to: "pages#thenightmarket", as: :thenightmarket
+  end
+
+  scope path: "/shop" do
+    get "/", to: "pages#shop", as: :shop
   end
 end

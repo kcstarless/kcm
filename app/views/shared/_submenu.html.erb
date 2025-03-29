@@ -1,0 +1,28 @@
+<div class="submenu-desktop" data-controller="submenu accordion">
+    <div class="submenu-container">
+        <%= link_to home_path, data: { turbo_frame: "home-content", turbo_action: "advance", action: "click->accordion#toggle", url: home_path } do%>
+            <%= image_tag("logo_dark_tilt.svg", 
+                alt: "Your Logo", 
+                class: "logo"
+                ) %>
+        <% end %>
+            
+        <div class="submenu-list" data-submenu-target="list"></div>
+
+        <div class="submenu-search-shop" data-submenu-target="title">
+            <%= link_to "#" do %>
+                <%= image_tag("icons/icon_search.svg", 
+                    alt: "Search Icon", 
+                    class: "icon",
+                ) %>
+            <% end %>
+
+            <%= link_to shop_path,  data: { turbo_frame: "shop-content", turbo_action: "advance", action: "click->accordion#toggle", url: shop_path } do %>
+                <%= image_tag("icons/icon_shopping.svg", 
+                    alt: "Shopping Icon", 
+                    class: "icon",
+                ) %>
+            <% end %>
+        </div>
+    </div>
+</div>
