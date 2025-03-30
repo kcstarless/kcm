@@ -17,6 +17,8 @@
 @use "./components/link";
 @use "./components/img";
 @use "./components/video";
+@use "./components/form";
+@use "./components/flash";
 
 // Import external resources (Google Fonts)
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"); // Dancing Script

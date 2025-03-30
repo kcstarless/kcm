@@ -35,4 +35,16 @@
     background-color: transparent;
     border: none;
   }
+  &.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3rem;
+    height: 3rem;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    color: black;
+    cursor: pointer;
+  }
 }

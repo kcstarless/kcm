@@ -63,4 +63,14 @@ export const menu = [
       { title: "Five-Year Market Strategy", path: "" },
     ],
   },
+
+  {
+    title: "Shop",
+    path: "/shop",
+    frame: "shop-content",
+    list: [
+      { title: "by Traders", path: "" },
+      { title: "by Categories", path: "" },
+    ],
+  },
 ];

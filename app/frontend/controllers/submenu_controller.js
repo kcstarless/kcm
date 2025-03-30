@@ -2,7 +2,14 @@ import { Controller } from "@hotwired/stimulus";
 import { menu } from "./consts/const_menu"; // Adjust the path according to your project structure
 
 export default class extends Controller {
-  static targets = ["modal", "title", "list", "desktopSubmenu"];
+  static targets = [
+    "modal",
+    "title",
+    "list",
+    "desktopSubmenu",
+    "modalContainer",
+    "modalBody",
+  ];
 
   connect() {
     console.log("Stimulus: submenu controller connected.");
@@ -79,5 +86,28 @@ export default class extends Controller {
         .join("");
       this.listTarget.innerHTML = list;
     }
+  }
+
+  // Generic method to load content into a modal
+  toggleModal(event) {
+    event.preventDefault(); // Prevent the default link behavior
+
+    const url = event.currentTarget.dataset.url; // Get the URL from the link's data-url attribute
+
+    // Fetch the content and load it into the modal
+    fetch(url)
+      .then((response) => response.text())
+      .then((html) => {
+        this.modalBodyTarget.innerHTML = html; // Insert the content into the modal body
+        this.modalContainerTarget.classList.remove("hidden"); // Show the modal
+      })
+      .catch((error) => {
+        console.error("Error loading modal content:", error);
+      });
+  }
+
+  closeModal() {
+    this.modalContainerTarget.classList.add("hidden"); // Hide the modal
+    this.modalBodyTarget.innerHTML = ""; // Clear the modal content
   }
 }

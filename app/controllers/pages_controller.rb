@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   allow_unauthenticated_access
+
   # Main menu pages
   def home
   end

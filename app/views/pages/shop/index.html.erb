@@ -1,6 +1,9 @@
-<turbo-frame id="shop-content">
-   <%= render "shared/submenu" %>
-  <div class="page shop">
-    <h1>Shop</h1>
-  </div>
-</turbo-frame>
+  <turbo-frame id="shop-content">
+    <turbo-frame id="flash">
+        <%= render "shared/flash" %>
+    </turbo-frame>
+      <%= render "shared/submenu" %>
+    <div class="page shop">
+      <h1>Shop</h1>
+    </div>
+  </turbo-frame>

@@ -3,14 +3,16 @@ class RegistrationsController < ApplicationController
 
   def new
     @user = User.new
-     Rails.logger.debug "New action called, @user initialized"
+    render partial: "shared/form_registration", locals: { user: @user }
   end
 
   def create
+    puts params.inspect
+
     @user = User.new(user_params)
     if @user.save
       start_new_session_for @user
-      redirect_to root_path, notice: "User was successfully created."
+      redirect_to home_path, notice: "User was successfully created."
     else
       render :new
     end
@@ -19,6 +21,6 @@ class RegistrationsController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    params.require(:user).permit(:email_address, :password, :password_confirmation)
   end
 end

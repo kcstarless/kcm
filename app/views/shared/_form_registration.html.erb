@@ -1,12 +1,5 @@
-<div class="registration">
+<div class="form registration">
     <h1>Register</h1>
-    <% if alert = flash[:alert] %>
-        <p><%= alert %></p>
-    <% end %>
-    <% if notice = flash[:notice] %>
-        <p><%= notice %></p>
-    <% end %>
-
     <%= form_with model: @user, url: registrations_path, class: "registrations-form" do |form| %>
         <div class="form-group">
             <%= form.label :email_address %>

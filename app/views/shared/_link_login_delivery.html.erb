@@ -1,0 +1,10 @@
+<div class="login-delivery-links">
+    <%= link_to "Delivery or Click & Collect", shop_path,  data: { action: "click->submenu#toggleModal", url: shop_path } %>
+    <% if authenticated? %>
+        <%= link_to "Logout", session_path, 'data-turbo-method': :delete, class: "btn btn-link" %>
+        <%= Current.user.email_address %>
+    <% else %>
+        <%= link_to "Login", new_session_path, data: { action: "click->submenu#toggleModal", url: new_session_path } %>
+        <%= link_to "Register", new_registration_path, data: { action: "click->submenu#toggleModal", url: new_registration_path } %>
+    <% end %>
+</div>
