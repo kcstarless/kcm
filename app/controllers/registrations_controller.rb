@@ -7,10 +7,9 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    puts params.inspect
-
     @user = User.new(user_params)
     if @user.save
+      create_customer_for(@user) # Call the helper method
       start_new_session_for @user
       redirect_to home_path, notice: "User was successfully created."
     else
@@ -22,5 +21,9 @@ class RegistrationsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email_address, :password, :password_confirmation)
+  end
+
+  def create_customer_for(user)
+    user.create_customer(name: "Guest", preferred_delivery_method: "pickup")
   end
 end

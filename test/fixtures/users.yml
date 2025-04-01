@@ -1,9 +1,11 @@
-<% password_digest = BCrypt::Password.create("password") %>
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  email_address: one@example.com
-  password_digest: <%= password_digest %>
+# This defines two `User` records that will be loaded into the test database.
 
-two:
-  email_address: two@example.com
-  password_digest: <%= password_digest %>
+one_user:
+  email_address: "user_one@example.com"
+  password_digest: <%= BCrypt::Password.create('securepassword') %>
+
+two_user:
+  email_address: "user_two@example.com"
+  password_digest: <%= BCrypt::Password.create('securepassword') %>
