@@ -2,10 +2,16 @@
 
 # This defines two `User` records that will be loaded into the test database.
 
-one_user:
+one:
+  id: 1
   email_address: "user_one@example.com"
   password_digest: <%= BCrypt::Password.create('securepassword') %>
+  first_name: "User"
+  last_name: "One"
 
-two_user:
+two:
+  id: 2
   email_address: "user_two@example.com"
   password_digest: <%= BCrypt::Password.create('securepassword') %>
+  first_name: "User"
+  last_name: "Two"

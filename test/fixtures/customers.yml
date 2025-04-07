@@ -5,13 +5,11 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  user: one_user
-  name: "Customer One"
+  user_id: 1
   preferred_delivery_method: "pickup"
 # column: value
 #
 two:
-  user: two_user
-  name: "Customer Two"
+  user_id: 2
   preferred_delivery_method: "delivery"
 # column: value

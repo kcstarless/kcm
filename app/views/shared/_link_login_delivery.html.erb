@@ -1,10 +1,35 @@
 <div class="login-delivery-links">
-    <%= link_to "Delivery or Click & Collect", shop_path,  data: { action: "click->submenu#toggleModal", url: shop_path } %>
+    <%= link_to "Delivery or Click & Collect", "#", data: { action: "click->submenu#toggleModal", target: "delivery" } %>
     <% if authenticated? %>
-        <%= link_to "Logout", session_path, 'data-turbo-method': :delete, class: "btn btn-link" %>
-        <%= Current.user.email_address %>
+        <%= link_to "Logout", session_path, 
+            'data-turbo-method': :delete, 
+            class: "btn btn-link",
+            data: { turbo_confirm: "Are you sure you want to logout?" } %>
+        <%= Current.user.first_name %> <%= Current.user.last_name %> 
     <% else %>
-        <%= link_to "Login", new_session_path, data: { action: "click->submenu#toggleModal", url: new_session_path } %>
-        <%= link_to "Register", new_registration_path, data: { action: "click->submenu#toggleModal", url: new_registration_path } %>
+        <%= link_to "Login", "#", data: { action: "click->submenu#toggleModal", target: "login" } %>
+        <%= link_to "Register", "#", data: { action: "click->submenu#toggleModal", target: "register" } %>
     <% end %>
+</div>
+
+
+<%# Modal for delivery, login, register link %>
+<div id="loginContainer" class="modal loginContainer hidden" data-submenu-target="loginContainer">
+    <button class="btn modal-close" data-action="click->submenu#closeModal">&times;</button>
+    <div class="modal-body" data-submenu-target="modalBody">
+        <!-- Login Form -->
+        <div id="loginForm">
+            <%= render partial: "shared/form_login", locals: { user: User.new } %>
+        </div>
+
+        <!-- Register Form -->
+        <div id="registerForm">
+            <%= render partial: "shared/form_registration", locals: { user: User.new } %>
+        </div>
+
+        <!-- Delivery From -->
+        <div id="deliveryForm">
+            <%= render partial: "shared/form_delivery", locals: { user: User.new } %>
+        </div>
+    </div>
 </div>

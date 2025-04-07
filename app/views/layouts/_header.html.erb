@@ -1,4 +1,4 @@
-<header data-controller="header submenu">
+<header data-controller="header">
     <div class="logo-cont">
         <%= link_to home_path do %>
             <%= image_tag("logo_dark_tilt.svg", 
@@ -46,46 +46,47 @@
     <%# Main menu for mobile devices expanded %>
     <div id="menu-list" data-header-target="menuList" class="menu-list">
         <div class="menu-item">
-            <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "Visit Us", color: "var(--color-acc-1)"
-             } do %>
+            <%= link_to visitus_path, class: "menu-header" do %>
                 <p>Visit Us</p>
             <% end %>
         </div>
         <div class="menu-item">
-            <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "Our Traders", color: "var(--color-acc-2)"
-             } do %>
+            <%= link_to ourtraders_path, class: "menu-header" do %>
                 <p>Our Traders</p>
             <% end %>
         </div>
+        <!-- 
         <div class="menu-item">
             <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "Become a Trader", color: "var(--color-acc-3)"
              } do %>
                 <p>Become a Trader</p>
             <% end %>
         </div>
+        -->
         <div class="menu-item">
-            <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "Events & Tours", color: "var(--color-acc-4)"
-             } do %>
+            <%= link_to eventstours_path, class: "menu-header" do %>
                 <p>Events & Tours</p>
             <% end %>
         </div>
+        <!-- 
         <div class="menu-item">
             <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "News", color: "var(--color-acc-5)"
              } do %>
                 <p>News</p>
             <% end %>
         </div>
+        -->
         <div class="menu-item">
-            <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "The Night Market", color: "var(--color-acc-6)"
-             } do %>
-                <p>The Night Market</p>
+            <%= link_to shop_path, class: "menu-header" do %>
+                <p>Shop</p>
             <% end %>
         </div>
         <button data-action="click->header#toggleOpenMenu" class="btn close-1">✕</button>
-        <button data-action="click->header#toggleOpenMenu" class="btn close-2">✕</button>
+        <%# <button data-action="click->header#toggleOpenMenu" class="btn close-2">✕</button> %>
     </div>
     
     <%# Submenu modal for mobile devices %>
+    <!-- 
     <div class="submenu-modal" data-submenu-target="modal">
         <div class="content">
             <div class="header">
@@ -97,5 +98,6 @@
             </div>
         </div>
     </div>
+    -->
 </header>
 

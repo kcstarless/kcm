@@ -1,0 +1,36 @@
+.modal {
+  &.loginContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    // box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out; /* Smooth transition for sliding in */
+
+    &.hidden {
+      opacity: 0;
+      transform: translateY(-100%); /* Start off-screen */
+    }
+
+    &:not(.hidden) {
+      transform: translateY(0); /* Slide into view */
+    }
+
+    #loginForm,
+    #registerForm,
+    #deliveryForm {
+      display: none; // Hide forms by default
+
+      &.active {
+        display: block; // Show when active
+      }
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .desktop-submenu {
+      display: none;
+    }
+  }
+}

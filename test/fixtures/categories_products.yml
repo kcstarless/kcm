@@ -1,0 +1,11 @@
+product_one_category_one:
+  product_id: 1
+  category_id: 1
+
+product_two_category_one:
+  product_id: 2
+  category_id: 1
+
+product_two_category_two:
+  product_id: 2
+  category_id: 2

@@ -1,0 +1,55 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+product_one:
+  id: 1
+  name: crab
+  description: lots of crab
+  price: 9.99
+  stock: 1
+  shop_id: 1
+  categories: [category_one]
+
+product_two:
+  id: 2
+  name: steak
+  description: lots of meat
+  price: 9.99
+  stock: 1
+  shop_id: 2
+  categories: [category_two]
+
+product_three:
+  id: 3
+  name: bread
+  description: lots of bread
+  price: 4.95
+  stock: 10
+  shop_id: 1
+  categories: [category_two]
+
+product_four:
+  id: 4
+  name: coffee
+  description: lots of coffee
+  price: 4.95
+  stock: 12
+  shop_id: 2
+  categories: [category_two]
+
+product_five:
+  id: 5
+  name: vege
+  description: lots of vege
+  price: 2.95
+  stock: 112
+  shop_id: 2
+  categories: [category_two]
+
+product_six:
+  id: 6
+  name: hamburger
+  description: tasty burger
+  price: 8.95
+  stock: 12
+  shop_id: 2
+  categories: [category_two]

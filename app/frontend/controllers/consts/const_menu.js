@@ -7,16 +7,8 @@ export const menu = [
     list: [
       { title: "Visit Us", path: "/visitus" },
       { title: "Parking", path: "/visitus/parking" },
-      { title: "Accessibility", path: "" },
       { title: "Contact", path: "" },
-      { title: "Education", path: "" },
       { title: "About", path: "" },
-      // { title: "Sustainability", path: "" },
-      // {
-      //   title: "Restoring & Revitalising the Market",
-      //   path: "",
-      //   frame: "visitus_content",
-      // },
     ],
   },
 
@@ -48,9 +40,9 @@ export const menu = [
     list: [
       { title: "Whats On", path: "/eventstours" },
       { title: "Tours", path: "" },
-      { title: "Education", path: "" },
-      { title: "Venue Hire", path: "" },
-      { title: "Permits", path: "" },
+      // { title: "Education", path: "" },
+      // { title: "Venue Hire", path: "" },
+      // { title: "Permits", path: "" },
     ],
   },
 
@@ -69,7 +61,7 @@ export const menu = [
     path: "/shop",
     frame: "shop-content",
     list: [
-      { title: "by Traders", path: "" },
+      { title: "by Traders", path: "/shop" },
       { title: "by Categories", path: "" },
     ],
   },

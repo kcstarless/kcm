@@ -37,4 +37,8 @@ class PagesController < ApplicationController
   def parking
     render template: "pages/visitus/parking"
   end
+
+  def form_delivery
+    render partial: "shared/form_delivery"
+  end
 end

@@ -1,0 +1,11 @@
+shop_one_category_one:
+  shop_id: 1
+  category_id: 1
+
+shop_one_category_two:
+  shop_id: 1
+  category_id: 2
+
+shop_two_category_two:
+  shop_id: 2
+  category_id: 2
