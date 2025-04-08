@@ -1,0 +1,25 @@
+<turbo-frame id="card-container">
+  <div class="card-container">
+    <div class="card-header">
+      <%# <h2>Shop by Traders</h2> %>
+    </div>
+    <div class="shop-card-list">
+        <% @traders.each do |trader| %>
+            <% trader.shops.each do |shop| %> 
+                <%= link_to shopfront_path(id: shop.id), data: { turbo_frame: "card-container" } do %>
+                    
+                    <div class="shop-card">
+                        <% if shop.image.attached? %>
+                            <%= image_tag shop.image, class: "card-image" %>
+                        <% end %>
+                        <div class="shop-card-content">
+                            <h3><%= shop.name %></h3>
+                        </div>
+                    </div>
+        
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
+  </div>
+</turbo-frame>

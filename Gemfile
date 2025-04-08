@@ -62,3 +62,4 @@ group :test do
 end
 
 gem "turbo-rails", "~> 2.0"
+gem "faker"

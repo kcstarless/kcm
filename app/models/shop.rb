@@ -2,6 +2,7 @@ class Shop < ApplicationRecord
   has_and_belongs_to_many :traders
   has_and_belongs_to_many :categories
   has_many :products
+  has_one_attached :image # Add this line
 
   # Validations
   validates :name, presence: true, uniqueness: true, length: { maximum: 255 }

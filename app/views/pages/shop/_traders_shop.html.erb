@@ -1,0 +1,18 @@
+<turbo-frame id="card-container">
+  <div class="card-container">
+    <h2><%= shop.name %></h2>
+    <div class="product-card-list">
+      <% products.each do |product| %>
+        <div class="product-card">
+          <% if product.image.attached? %>
+            <%= image_tag product.image, class: "product-image" %>
+          <% end %>
+          <h3><%= product.name %></h3>
+          <p><%= product.description %></p>
+          <p>Price: $<%= product.price %></p>
+          <p>Stock: <%= product.stock %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</turbo-frame>

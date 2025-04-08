@@ -32,7 +32,9 @@ Rails.application.routes.draw do
     get "/", to: "pages#thenightmarket", as: :thenightmarket
   end
 
+  # General shop overview page
   scope path: "/shop" do
     get "/", to: "pages#shop", as: :shop
+    get "/:id", to: "shops#show", as: :shopfront
   end
 end
