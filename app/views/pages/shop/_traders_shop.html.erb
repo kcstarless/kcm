@@ -1,21 +1,33 @@
 <turbo-frame id="card-container">
   <div class="card-container">
-    <div class="shop-header">
-      <div class="shop-name"><%= shop.name %></div>
-      <div class="shop-description"><%= shop.description %></div>
-      <div class="shop-location"><%= shop.location %></div>
-    </div>
-    <div class="product-card-list">
-      <% products.each do |product| %>
-        <div class="product-card">
-          <% if product.image.attached? %>
-            <%= image_tag product.image, class: "product-image" %>
-          <% end %>
-          <h3><%= product.name %></h3>
-          <p><%= product.description %></p>
-          <p>Price: $<%= product.price %></p>
-        </div>
-      <% end %>
-    </div>
+
+      <div class="shop-header">
+        <div class="shop-name"><%= shop.name %></div>
+        <div class="shop-description"><%= shop.description %></div>
+        <div class="shop-location"><%= shop.location %></div>
+      </div>
+
+      <div class="product-card-list">
+        <% products.each do |product| %>
+          <div class="product-card">
+            <div class="product-card-header">
+              <h4><%= product.name %></h4>
+              <h4><%= number_to_currency(product.price) %></h4>
+            </div>
+            <div class="product-card-image">
+              <% if product.image.attached? %>
+                <%= image_tag product.image, class: "product-image" %>
+              <% end %>
+            </div>
+            <div class="product-add-to-cart">
+              <div class="product-minus">-</div>
+              <div class="product-quantity">1</div>
+              <div class="product-plus">+</div>
+              <div class="add-to-cart">ADD</div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
   </div>
 </turbo-frame>

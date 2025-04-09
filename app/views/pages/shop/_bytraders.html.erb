@@ -7,17 +7,20 @@
                 <%= link_to shopfront_path(id: shop.id), data: { turbo_frame: "card-container" } do %>
                     
                     <div class="shop-card">
-                        <% if shop.image.attached? %>
-                            <%= image_tag shop.image, class: "card-image" %>
-                        <% end %>
-                        <div class="shop-card-content">
+                        <div class="shop-card-header">
                             <h3><%= shop.name %></h3>
+                            <h3> >></h3>
+                        </div>
+                        <div class="shop-card-image">
+                            <% if shop.image.attached? %>
+                                <%= image_tag shop.image, class: "card-image" %>
+                            <% end %>
                         </div>
                     </div>
-        
                 <% end %>
             <% end %>
         <% end %>
     </div>
+    
   </div>
 </turbo-frame>

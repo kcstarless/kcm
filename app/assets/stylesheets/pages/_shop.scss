@@ -14,9 +14,8 @@
   .shop-header {
     width: 100%;
     margin-bottom: 1vw;
-    border-radius: 10px;
-    background-color: #004632;
-    color: var(--color-acc-4);
+    color: #004632;
+    border: solid 2px #004632;
     padding: 1vw;
     .shop-name {
       font-size: clamp(3rem, 4vw, 6rem);
@@ -27,152 +26,164 @@
 
     .shop-location {
     }
-
-    .shop-banner-image {
-      width: 100%;
-      height: 30vh;
-      object-fit: cover;
-      border-radius: 10px;
-      // filter: grayscale(80%);
-      background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.5),
-          rgba(0, 0, 0, 0.5)
-        ),
-        url("...");
-      background-size: cover;
-      background-position: center;
-    }
   }
 
   .shop-card-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(clamp(300px, 25vw, 25vw), 1fr)
+    );
     gap: 2vw;
 
     .shop-card {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      background-color: white;
-      // border: dashed 2px white;
-      // border-style: dashed solid;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      padding: 1vw;
+      border: solid 1px #004632;
       transition: transform 0.3s;
-      rotate: -5deg;
       width: 100%;
-      color: #004632;
-      z-index: 1;
+      margin: 0;
+      padding: 0;
+      //   rotate: -3deg;
 
       &:hover {
-        // transform: scale(1.05);
-        // transform: rotate(10deg);
-        // background-color: white;
-        // border: none;
-        // color: white;
+        .shop-card-header {
+          background-color: #004632; // Change background color on hover
+          color: white; // Change text color on hover
+        }
+        .card-image {
+          transform: scale(1.05);
+        }
       }
 
-      .card-image {
+      .shop-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
-        height: auto;
-        border-radius: 10px;
+        padding: 1vw;
+        background-color: var(--color-acc-4);
+        color: #004632;
+        border-bottom: solid 1px #004632;
+        h3 {
+          font-size: clamp(1.5rem, 2vw, 4rem);
+        }
       }
-    }
 
-    a:hover {
-      position: relative;
-      z-index: 9999;
-    }
+      .shop-card-image {
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
 
-    a:nth-child(1) {
-      background-color: #004632;
-      border-radius: 10px;
-      rotate: -5deg;
-      .shop-card:hover {
-        transform: rotate(10deg);
-      }
-    }
-    a:nth-child(2) {
-      background-color: #004632;
-      border-radius: 10px;
-      rotate: 10deg;
-      .shop-card:hover {
-        transform: rotate(-5deg);
-      }
-    }
-    a:nth-child(3) {
-      background-color: #004632;
-      border-radius: 10px;
-      rotate: 15deg;
-      .shop-card:hover {
-        transform: rotate(-10deg);
-      }
-    }
-    a:nth-child(4) {
-      background-color: #004632;
-      border-radius: 10px;
-      rotate: -8deg;
-      .shop-card:hover {
-        transform: rotate(16deg);
-      }
-    }
-    a:nth-child(5) {
-      background-color: #004632;
-      border-radius: 10px;
-      rotate: -3deg;
-      .shop-card:hover {
-        transform: rotate(10deg);
-      }
-    }
-    a:nth-child(6) {
-      background-color: #004632;
-      border-radius: 10px;
-      rotate: 20deg;
-      .shop-card:hover {
-        transform: rotate(-15deg);
+        .card-image {
+          width: 100%;
+          height: 100%;
+          display: block;
+          transition: transform 0.3s;
+          object-fit: cover;
+        }
       }
     }
   }
 
   .product-card-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(clamp(300px, 20vw, 20vw), 1fr)
+    );
     gap: 2vw;
 
     .product-card {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
-      background-color: white;
-      // border: dashed 2px white;
-      // border-style: dashed solid;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      padding: 1vw;
+      border: solid 1px #004632;
       transition: transform 0.3s;
-      // rotate: -5deg;
       width: 100%;
-      color: #004632;
+      margin: 0;
+      padding: 0;
 
-      // &:hover {
-      //   // transform: scale(1.05);
-      //   // transform: rotate(10deg);
-      //   // background-color: white;
-      //   // border: none;
-      //   // color: white;
-      // }
+      &:hover {
+        .product-card-header {
+          background-color: #004632; // Change background color on hover
+          color: white; // Change text color on hover
+        }
+      }
 
-      .product-image {
-        width: 100%; // Fixed width
-        height: 300px; // Fixed height
-        object-fit: cover; // Ensures the image fits within the dimensions
-        border-radius: 10px;
-        margin-bottom: 1rem;
+      .product-card-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background-color: var(--color-acc-4);
+        color: #004632;
+        border-bottom: solid 1px #004632;
+        padding: 1vw;
+
+        h3 {
+          font-size: clamp(1.5rem, 2vw, 4rem);
+        }
+      }
+
+      .product-card-image {
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+
+        .product-image {
+          width: 100%;
+          height: 100%;
+          display: block;
+          transition: transform 0.3s;
+          object-fit: cover;
+        }
+      }
+
+      .product-add-to-cart {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 0.2fr 0.2fr 0.2fr 0.4fr;
+
+        .product-minus {
+          border-right: solid 1px #004632;
+          border-top: solid 1px #004632;
+          height: 5vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .product-quantity {
+          border-right: solid 1px #004632;
+          border-top: solid 1px #004632;
+          height: 5vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .product-plus {
+          border-right: solid 1px #004632;
+          border-top: solid 1px #004632;
+          height: 5vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .add-to-cart {
+          border-top: solid 1px #004632;
+          height: 5vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
   }
