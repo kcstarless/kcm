@@ -1,0 +1,179 @@
+.shop {
+  background-color: var(--color-acc-4);
+  position: relative;
+  overflow-y: auto;
+
+  .card-container {
+    // border: solid 1px black;
+    padding: 2vw;
+    padding-top: 15vh;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.6s forwards;
+  }
+
+  .shop-header {
+    width: 100%;
+    margin-bottom: 1vw;
+    border-radius: 10px;
+    background-color: #004632;
+    color: var(--color-acc-4);
+    padding: 1vw;
+    .shop-name {
+      font-size: clamp(3rem, 4vw, 6rem);
+    }
+
+    .shop-description {
+    }
+
+    .shop-location {
+    }
+
+    .shop-banner-image {
+      width: 100%;
+      height: 30vh;
+      object-fit: cover;
+      border-radius: 10px;
+      // filter: grayscale(80%);
+      background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.5)
+        ),
+        url("...");
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  .shop-card-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2vw;
+
+    .shop-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      // border: dashed 2px white;
+      // border-style: dashed solid;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 1vw;
+      transition: transform 0.3s;
+      rotate: -5deg;
+      width: 100%;
+      color: #004632;
+      z-index: 1;
+
+      &:hover {
+        // transform: scale(1.05);
+        // transform: rotate(10deg);
+        // background-color: white;
+        // border: none;
+        // color: white;
+      }
+
+      .card-image {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+    }
+
+    a:hover {
+      position: relative;
+      z-index: 9999;
+    }
+
+    a:nth-child(1) {
+      background-color: #004632;
+      border-radius: 10px;
+      rotate: -5deg;
+      .shop-card:hover {
+        transform: rotate(10deg);
+      }
+    }
+    a:nth-child(2) {
+      background-color: #004632;
+      border-radius: 10px;
+      rotate: 10deg;
+      .shop-card:hover {
+        transform: rotate(-5deg);
+      }
+    }
+    a:nth-child(3) {
+      background-color: #004632;
+      border-radius: 10px;
+      rotate: 15deg;
+      .shop-card:hover {
+        transform: rotate(-10deg);
+      }
+    }
+    a:nth-child(4) {
+      background-color: #004632;
+      border-radius: 10px;
+      rotate: -8deg;
+      .shop-card:hover {
+        transform: rotate(16deg);
+      }
+    }
+    a:nth-child(5) {
+      background-color: #004632;
+      border-radius: 10px;
+      rotate: -3deg;
+      .shop-card:hover {
+        transform: rotate(10deg);
+      }
+    }
+    a:nth-child(6) {
+      background-color: #004632;
+      border-radius: 10px;
+      rotate: 20deg;
+      .shop-card:hover {
+        transform: rotate(-15deg);
+      }
+    }
+  }
+
+  .product-card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2vw;
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      // border: dashed 2px white;
+      // border-style: dashed solid;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 1vw;
+      transition: transform 0.3s;
+      // rotate: -5deg;
+      width: 100%;
+      color: #004632;
+
+      // &:hover {
+      //   // transform: scale(1.05);
+      //   // transform: rotate(10deg);
+      //   // background-color: white;
+      //   // border: none;
+      //   // color: white;
+      // }
+
+      .product-image {
+        width: 100%; // Fixed width
+        height: 300px; // Fixed height
+        object-fit: cover; // Ensures the image fits within the dimensions
+        border-radius: 10px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

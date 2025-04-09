@@ -1,6 +1,10 @@
 <turbo-frame id="card-container">
   <div class="card-container">
-    <h2><%= shop.name %></h2>
+    <div class="shop-header">
+      <div class="shop-name"><%= shop.name %></div>
+      <div class="shop-description"><%= shop.description %></div>
+      <div class="shop-location"><%= shop.location %></div>
+    </div>
     <div class="product-card-list">
       <% products.each do |product| %>
         <div class="product-card">
@@ -10,7 +14,6 @@
           <h3><%= product.name %></h3>
           <p><%= product.description %></p>
           <p>Price: $<%= product.price %></p>
-          <p>Stock: <%= product.stock %></p>
         </div>
       <% end %>
     </div>

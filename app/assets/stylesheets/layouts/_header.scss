@@ -189,6 +189,7 @@ header {
 @media screen and (min-width: 1000px) {
   header {
     display: none;
+
     .menu-cont {
       display: none;
       top: 0;
@@ -199,7 +200,7 @@ header {
   .submenu {
     position: absolute;
     z-index: 1000;
-    padding: var(--space-medium);
+    background-color: inherit;
     display: block;
     width: 100%;
     // border: solid 1px black;
@@ -210,9 +211,11 @@ header {
       flex-direction: row;
       justify-content: start;
       align-items: center;
+      padding: var(--space-medium);
       gap: 2vw;
       width: 100%;
-      // background-color: transparent;
+      // background-color: var(--color-acc-4);
+      // background-color: white;
       // filter: blur(1px);
       // border: solid 1px black;
     }
@@ -237,6 +240,7 @@ header {
     .submenu-list {
       display: flex;
       gap: 2vw;
+
       .submenu-item {
         // border: solid 1px black;
         font-size: 1.3rem;
@@ -244,6 +248,7 @@ header {
         // font-weight: bold;
         // font-family: "Marcellus";
         transform: rotate(-5deg);
+
         &:hover {
           transform: rotate(0deg);
           text-decoration-color: rgb(255, 255, 255);
