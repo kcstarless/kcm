@@ -1,5 +1,5 @@
 <turbo-frame id="card-container">
-  <div class="card-container">
+  <div class="card-container"  data-controller="cart">
 
       <div class="shop-header">
         <div class="shop-name"><%= shop.name %></div>
@@ -20,10 +20,20 @@
               <% end %>
             </div>
             <div class="product-add-to-cart">
-              <div class="product-minus">-</div>
-              <div class="product-quantity">1</div>
-              <div class="product-plus">+</div>
-              <div class="add-to-cart">ADD</div>
+              <div class="product-minus">
+                <button data-action="click->cart#decreaseQuantity" data-product-id="<%= product.id %>">-</button>
+              </div>
+              <div class="product-quantity" id="product-quantity-<%= product.id %>">1</div>
+              <div class="product-plus">
+                <button data-action="click->cart#increaseQuantity" data-product-id="<%= product.id %>">+</button>
+              </div>
+              <div class="add-to-cart">
+                <%= form_with url: cart_items_path, method: :post, local: true do |form| %>
+                  <%= hidden_field_tag :product_id, product.id %>
+                  <%= hidden_field_tag :quantity, 1, id: "quantity-input-#{product.id}" %>
+                  <%= form.submit "ADD", class: "add-to-cart-button" %>
+                <% end %>
+              </div>
             </div>
           </div>
         <% end %>

@@ -8,7 +8,7 @@ class CartItem < ApplicationRecord
   before_create :set_price
 
   def item_subtotal
-    price * quantity
+    (price * quantity).to_f
   end
 
   private

@@ -1,0 +1,100 @@
+@use "mixins" as m;
+
+.submenu {
+  display: none;
+}
+
+@media screen and (min-width: 1000px) {
+  .submenu {
+    position: absolute;
+    z-index: 1000;
+    background-color: inherit;
+    display: block;
+    width: 100%;
+    // opacity: 0;
+    // animation: fadeIn 0.3s ease-out 0.3s forwards;
+    .submenu-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-medium);
+      gap: 2vw;
+      width: 100%;
+      .logo {
+        width: clamp(4rem, 5vw, 5rem);
+      }
+    }
+
+    .submenu-list {
+      display: flex;
+      gap: 2vw;
+
+      .submenu-item {
+        // border: solid 1px black;
+        font-size: 1.3rem;
+        transition: transform 0.3s ease-in-out;
+        // font-weight: bold;
+        // font-family: "Marcellus";
+        transform: rotate(-5deg);
+
+        &:hover {
+          transform: rotate(0deg);
+          text-decoration-color: rgb(255, 255, 255);
+          text-decoration: underline;
+        }
+        &.active {
+          a {
+            text-decoration: underline;
+            // text-decoration-color: rgb(255, 255, 255);
+          }
+        }
+      }
+    }
+
+    .submenu-login-shop {
+      display: flex;
+      align-items: center;
+
+      .login-delivery-container {
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        width: 100%;
+        // padding: 0 20px;
+        gap: 1vw;
+        // border: solid 1px black;
+      }
+
+      .search-shop-container {
+        display: flex;
+
+        .cart-total-items {
+          position: absolute;
+          top: 15px;
+          right: 10px;
+          background-color: var(--color-acc-1);
+          color: white;
+          font-size: 1.2rem;
+          font-weight: bold;
+          width: 2rem; /* Set width */
+          height: 2rem; /* Set height */
+          border-radius: 50%; /* Make it a circle */
+          display: flex;
+          justify-content: center; /* Center text horizontally */
+          align-items: center; /* Center text vertically */
+        }
+      }
+      .icon {
+        width: clamp(2rem, 7vw, 4rem);
+        transition: transform 0.3s ease-in-out;
+        // position: relative;
+        &:hover {
+          transform: rotate(-20deg);
+        }
+      }
+    }
+  }
+}
+
+@include m.animation;

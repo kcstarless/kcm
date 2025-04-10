@@ -55,34 +55,17 @@
                 <p>Our Traders</p>
             <% end %>
         </div>
-        <!-- 
-        <div class="menu-item">
-            <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "Become a Trader", color: "var(--color-acc-3)"
-             } do %>
-                <p>Become a Trader</p>
-            <% end %>
-        </div>
-        -->
         <div class="menu-item">
             <%= link_to eventstours_path, class: "menu-header" do %>
                 <p>Events & Tours</p>
             <% end %>
         </div>
-        <!-- 
-        <div class="menu-item">
-            <%= link_to "#", class: "menu-header", data: { action: "click->submenu#openSubmenu",  title: "News", color: "var(--color-acc-5)"
-             } do %>
-                <p>News</p>
-            <% end %>
-        </div>
-        -->
         <div class="menu-item">
             <%= link_to shop_path, class: "menu-header" do %>
                 <p>Shop</p>
             <% end %>
         </div>
         <button data-action="click->header#toggleOpenMenu" class="btn close-1">✕</button>
-        <%# <button data-action="click->header#toggleOpenMenu" class="btn close-2">✕</button> %>
     </div>
     
     <%# Submenu modal for mobile devices %>

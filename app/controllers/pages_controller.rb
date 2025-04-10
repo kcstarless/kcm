@@ -13,21 +13,9 @@ class PagesController < ApplicationController
     render template: "pages/ourtraders/index"
   end
 
-  # def becomeatrader
-  #   render template: "pages/becomeatrader/index"
-  # end
-
   def eventstours
     render template: "pages/eventstours/index"
   end
-
-  # def news
-  #   render template: "pages/news/index"
-  # end
-
-  # def thenightmarket
-  #   render template: "pages/thenightmarket/index"
-  # end
 
   def shop
     @traders = Trader.includes(:shops).all # Ensure @traders is set

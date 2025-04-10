@@ -1,5 +1,12 @@
 class ApplicationController < ActionController::Base
   include Authentication
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  # allow_browser versions: :modern
+  before_action :initialize_cart
+
+  private
+
+  def initialize_cart
+    if authenticated? # Ensure the user is logged in
+      current_user.carts.find_or_create_by(status: "active")
+    end
+  end
 end

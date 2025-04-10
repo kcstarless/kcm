@@ -1,35 +1,54 @@
-<div class="login-delivery-links">
-    <%= link_to "Delivery or Click & Collect", "#", data: { action: "click->submenu#toggleModal", target: "delivery" } %>
-    <% if authenticated? %>
-        <%= link_to "Logout", session_path, 
-            'data-turbo-method': :delete, 
-            class: "btn btn-link",
-            data: { turbo_confirm: "Are you sure you want to logout?" } %>
-        <%= Current.user.first_name %> <%= Current.user.last_name %> 
-    <% else %>
-        <%= link_to "Login", "#", data: { action: "click->submenu#toggleModal", target: "login" } %>
-        <%= link_to "Register", "#", data: { action: "click->submenu#toggleModal", target: "register" } %>
-    <% end %>
-</div>
-
-
-<%# Modal for delivery, login, register link %>
-<div id="loginContainer" class="modal loginContainer hidden" data-submenu-target="loginContainer">
-    <button class="btn modal-close" data-action="click->submenu#closeModal">&times;</button>
-    <div class="modal-body" data-submenu-target="modalBody">
-        <!-- Login Form -->
-        <div id="loginForm">
-            <%= render partial: "shared/form_login", locals: { user: User.new } %>
-        </div>
-
-        <!-- Register Form -->
-        <div id="registerForm">
-            <%= render partial: "shared/form_registration", locals: { user: User.new } %>
-        </div>
-
-        <!-- Delivery From -->
-        <div id="deliveryForm">
-            <%= render partial: "shared/form_delivery", locals: { user: User.new } %>
-        </div>
+<div class="submenu-login-shop">
+    <div class="login-delivery-container">
+        <%= link_to "Delivery", "#", data: { action: "click->submenu#toggleModal", target: "delivery" } %>
+        <% if authenticated? %>
+            <%= button_to "Logout", session_path, 
+                method: :delete, 
+                class: "btn btn-logout",
+                data: { turbo_confirm: "Are you sure you want to logout?" } %>
+            Hi,<%= Current.user.first_name %>!
+        <% else %>
+            <%= link_to "Login", "#", data: { action: "click->submenu#toggleModal", target: "login" } %>
+            <%= link_to "Register", "#", data: { action: "click->submenu#toggleModal", target: "register" } %>
+        <% end %>
     </div>
+
+    <div class="search-shop-container" data-submenu-target="title">           
+        <%= link_to "#" do %>
+            <%= image_tag("icons/icon_search_light.svg", 
+                alt: "Search Icon", 
+                class: "icon",
+            ) %>
+        <% end %>
+        <turbo-frame id="tf-cart-icon">
+            <%= render "shared/cart_icon" %>
+        </turbo-frame>
+    </div>
+
+
+    <%# Modal for delivery, login, register, cart %>
+    <div id="loginContainer" class="modal loginContainer hidden" data-submenu-target="loginContainer">
+        <button class="btn modal-close" data-action="click->submenu#closeModal">&times;</button>
+        <div class="modal-body" data-submenu-target="modalBody">
+            <!-- Login Form -->
+            <div id="loginForm">
+                <%= render partial: "shared/form_login", locals: { user: User.new } %>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm">
+                <%= render partial: "shared/form_registration", locals: { user: User.new } %>
+            </div>
+
+            <!-- Delivery From -->
+            <div id="deliveryForm">
+                <%= render partial: "shared/form_delivery", locals: { user: User.new } %>
+            </div>
+            <turbo-frame id="tf-cart">
+                <div id="cartForm">
+                    <%= render partial: "shared/form_cart", locals: { user: User.new } %>
+                </div>
+            </turbo-frame>
+        </div>
+</div>
 </div>

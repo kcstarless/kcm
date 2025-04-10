@@ -86,7 +86,7 @@ export default class extends Controller {
 
     // Remove active class from all forms
     this.modalBodyTarget
-      .querySelectorAll("#loginForm, #registerForm, #deliveryForm")
+      .querySelectorAll("#loginForm, #registerForm, #deliveryForm, #cartForm")
       .forEach((form) => {
         form.classList.remove("active");
       });

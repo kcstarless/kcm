@@ -62,7 +62,7 @@ export default class extends Controller {
       console.error(`No panel found with URL: ${panelUrl}`);
       return;
     }
-    console.log(this.panelContainerTargets);
+    // console.log(this.panelContainerTargets);
     // Deactivate all panels
     const allPanels = document.querySelectorAll(".panel");
     allPanels.forEach((panel) => {

@@ -1,4 +1,6 @@
 .btn {
+  cursor: pointer;
+
   &.btn-primary {
     color: red;
   }
@@ -41,8 +43,8 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 5rem;
-    height: 5rem;
+    // width: 5rem;
+    // height: 5rem;
     background-color: transparent;
     border: none;
     font-size: 5rem;
@@ -72,5 +74,13 @@
       outline: none;
       border: 4px solid white;
     }
+  }
+
+  &.btn-logout {
+    background-color: transparent;
+    border: none;
+    font-family: "Nova Mono";
+    font-size: 1rem;
+    // padding: none;
   }
 }

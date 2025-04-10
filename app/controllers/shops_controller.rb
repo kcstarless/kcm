@@ -5,8 +5,6 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     @products = @shop.products
 
-    logger.debug "ShopSSSSSSSSS: #{@shop.inspect}" # Debug log to verify the shop object
-
     respond_to do |format|
       format.html do
         render partial: "pages/shop/traders_shop", locals: { shop: @shop, products: @products }

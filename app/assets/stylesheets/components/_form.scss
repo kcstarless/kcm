@@ -2,7 +2,8 @@
   width: 100%;
 
   &.login,
-  &.registration {
+  &.registration,
+  &.cart {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 

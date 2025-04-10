@@ -1,16 +1,24 @@
 require 'faker'
 
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+# Reset the database
+puts "Resetting database..."
+ActiveRecord::Base.transaction do
+  Product.destroy_all
+  Shop.destroy_all
+  Category.destroy_all
+  Trader.destroy_all
+  Customer.destroy_all
+  User.destroy_all
 
-# Delete all existing records in the correct order to avoid foreign key violations
-Product.destroy_all
-Shop.destroy_all
-Category.destroy_all
-Trader.destroy_all
-Customer.destroy_all
-User.destroy_all
+  # Reset primary key sequences
+  ActiveRecord::Base.connection.reset_pk_sequence!('products')
+  ActiveRecord::Base.connection.reset_pk_sequence!('shops')
+  ActiveRecord::Base.connection.reset_pk_sequence!('categories')
+  ActiveRecord::Base.connection.reset_pk_sequence!('traders')
+  ActiveRecord::Base.connection.reset_pk_sequence!('customers')
+  ActiveRecord::Base.connection.reset_pk_sequence!('users')
+end
+puts "Database reset complete."
 
 # Create a single user
 user = User.create!(
@@ -34,14 +42,14 @@ end
 # Create shops
 shops = categories.map do |category|
   shop = Shop.find_or_create_by!(
-    name: "#{category.name} Shop",
+    name: Faker::Company.name, # Use a random shop name
     location: Faker::Address.street_address,
     phone_number: Faker::PhoneNumber.phone_number,
     email_address: Faker::Internet.email,
     description: "This is a shop specializing in #{category.name.downcase} products."
   )
   shop.image.attach(
-    io: File.open(Rails.root.join("app/assets/images/shops/#{category.name.downcase}_shop.avif")), # Add :io back
+    io: File.open(Rails.root.join("app/assets/images/shops/#{category.name.downcase}_shop.avif")),
     filename: "#{category.name.downcase}_shop.avif",
     content_type: "image/avif"
   )
@@ -55,7 +63,8 @@ shops.each_with_index do |shop, index|
       name: "#{categories[index].name} Product #{i + 1}",
       description: Faker::Food.description,
       price: Faker::Commerce.price(range: 1.0..20.0),
-      stock: 100
+      stock: 100,
+      unit: [ "kg", "each" ].sample # Assign either "kg" or "each" randomly
     )
     product.categories << categories[index] unless product.categories.include?(categories[index])
 

@@ -37,4 +37,6 @@ Rails.application.routes.draw do
     get "/", to: "pages#shop", as: :shop
     get "/:id", to: "shops#show", as: :shopfront
   end
+
+  resources :cart_items, only: [ :create, :update, :destroy ]
 end

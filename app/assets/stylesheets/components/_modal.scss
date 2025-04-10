@@ -7,6 +7,7 @@
     background: white;
     // box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out; /* Smooth transition for sliding in */
+    z-index: 9999;
 
     &.hidden {
       opacity: 0;
@@ -19,7 +20,8 @@
 
     #loginForm,
     #registerForm,
-    #deliveryForm {
+    #deliveryForm,
+    #cartForm {
       display: none; // Hide forms by default
 
       &.active {
