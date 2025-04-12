@@ -32,20 +32,29 @@ class CartItemsController < ApplicationController
   end
 
   def update
-    cart_item = current_user.carts.find_by(status: "active").cart_items.find(params[:id])
-    if cart_item.update(quantity: params[:quantity])
-      flash.now[:notice] = "Item updated."
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.update("flash", partial: "shared/flash"),
-            turbo_stream.update("tf-cart-icon", partial: "shared/cart_icon"),
-            turbo_stream.update("tf-cart", partial: "shared/form_cart")
-          ]
+    begin
+      cart_item = current_user.carts.find_by(status: "active").cart_items.find(params[:id])
+      if cart_item.update(quantity: params[:quantity])
+        # flash.now[:notice] = "Item updated."
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: [
+              turbo_stream.update("flash", partial: "shared/flash"),
+              turbo_stream.update("tf-cart-icon", partial: "shared/cart_icon"),
+              turbo_stream.update("tf-cart", partial: "shared/form_cart")
+            ]
+          end
+        end
+      else
+        flash.now[:alert] = "Failed to update cart item."
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.update("flash", partial: "shared/flash")
+          end
         end
       end
-    else
-      flash.now[:alert] = "Failed to update cart item."
+    rescue ActiveRecord::RecordNotFound
+      flash.now[:alert] = "Cart item not found."
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: turbo_stream.update("flash", partial: "shared/flash")
@@ -55,20 +64,29 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
-    cart_item = current_user.carts.find_by(status: "active").cart_items.find(params[:id])
-    if cart_item.destroy
-      flash.now[:notice] = "Cart item removed successfully."
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.update("flash", partial: "shared/flash"),
-            turbo_stream.update("tf-cart-icon", partial: "shared/cart_icon"),
-            turbo_stream.update("tf-cart", partial: "shared/form_cart") # Ensure this ID matches the container in your view
-          ]
+    begin
+      cart_item = current_user.carts.find_by(status: "active").cart_items.find(params[:id])
+      if cart_item.destroy
+        flash.now[:notice] = "Cart item removed successfully."
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: [
+              turbo_stream.update("flash", partial: "shared/flash"),
+              turbo_stream.update("tf-cart-icon", partial: "shared/cart_icon"),
+              turbo_stream.update("tf-cart", partial: "shared/form_cart")
+            ]
+          end
+        end
+      else
+        flash.now[:alert] = "Failed to remove cart item."
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.update("flash", partial: "shared/flash")
+          end
         end
       end
-    else
-      flash.now[:alert] = "Failed to remove cart item."
+    rescue ActiveRecord::RecordNotFound
+      flash.now[:alert] = "Cart item not found."
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: turbo_stream.update("flash", partial: "shared/flash")

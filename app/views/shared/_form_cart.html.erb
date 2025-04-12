@@ -1,19 +1,30 @@
 <div class="form cart">
-    <h1>Cart</h1>
+    <h3>Your Cart</h3>
     <div class="cart-items">
         <% if current_user&.active_cart&.cart_items.present? %>
             <% current_user.active_cart.cart_items.each do |cart_item| %>
-                <div class="cart-item">
+                <div class="cart-item" data-controller="cart_item" data-cart_item-id-value="<%= cart_item.id %>">
                     <div class="cart-item-name"><%= cart_item.product.name %></div>
-                    <div class="cart-item-quantity">
-                        <%= form_with url: cart_item_path(cart_item), method: :patch, local: true do |form| %>
-                            <%= form.number_field :quantity, value: cart_item.quantity, min: 1, class: "quantity-input" %>
-                            <%= form.submit "Update", class: "btn btn-secondary" %>
-                        <% end %>
-                    </div>
-                    <div class="cart-item-price"><%= number_to_currency(cart_item.product.price) %></div>
-                    <div class="cart-item-delete">
-                        <%= button_to "Delete", cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %>
+                    <div class="cart-item-action">
+                        <div class="col-1">
+                            <button type="button" class="btn minus" data-action="click->cart_item#decreaseQuantity">
+                                &minus;
+                            </button>
+                            <input type="number" value="<%= cart_item.quantity %>" min="1" class="quantity-input" readonly>
+                            <button type="button" class="btn plus" data-action="click->cart_item#increaseQuantity">
+                                &plus;
+                            </button>
+                        </div>
+                        <div class="col-2">
+                            <div class="cart-item-price"><%= number_to_currency(cart_item.product.price) %></div>
+                        </div>
+                        <div class="col-3">
+                            <div class="cart-item-delete">
+                                <%= button_to cart_item_path(cart_item), method: :delete, class: "btn delete-cart-item" do %>
+                                    &times;
+                                <% end %>
+                            </div>
+                        </div>
                     </div>
                 </div>
             <% end %>
@@ -23,9 +34,12 @@
     </div>
 
     <div class="cart-total">
-        <strong>Total: <%= number_to_currency(current_user&.active_cart&.total_price || 0) %></strong>
+        <div class="box-header">Total</div> 
+        <strong><%= number_to_currency(current_user&.active_cart&.total_price || 0) %></strong>
     </div>
 
-    <%= link_to "Checkout", "#", class: "btn btn-primary" %>
-    <%= link_to "Continue Shopping", shop_path, class: "btn btn-secondary" %>
+    <div class="cart-checkout">
+        <div class="box-header">Checkout</div>
+        <%= link_to "Checkout", "#", class: "btn btn-checkout" %>
+    </div>
 </div>

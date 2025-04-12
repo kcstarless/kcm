@@ -7,11 +7,16 @@
     background: white;
     // box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out; /* Smooth transition for sliding in */
-    z-index: 9999;
+    // z-index: 9999;
 
     &.hidden {
-      opacity: 0;
+      display: opacity(0);
       transform: translateY(-100%); /* Start off-screen */
+      .btn {
+        &.modal-close {
+          display: none;
+        }
+      }
     }
 
     &:not(.hidden) {
@@ -23,6 +28,7 @@
     #deliveryForm,
     #cartForm {
       display: none; // Hide forms by default
+      // padding: 2vw;
 
       &.active {
         display: block; // Show when active

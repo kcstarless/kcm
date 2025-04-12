@@ -2,8 +2,7 @@
   width: 100%;
 
   &.login,
-  &.registration,
-  &.cart {
+  &.registration {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 
@@ -76,4 +75,153 @@
       font-size: 1.5rem;
     }
   }
+
+  &.cart {
+    display: grid;
+    grid-template-columns: 0.6fr 0.2fr 0.2fr;
+    position: relative;
+
+    h3 {
+      position: absolute;
+      top: 0.5vw;
+      left: 0.5vw;
+      color: white;
+      font-size: 1rem;
+      font-weight: normal;
+    }
+    .cart-items {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.3rem;
+      color: black;
+      // gap: 2vw;
+      .cart-item {
+        width: 100%;
+        // border-bottom: solid 1px gray;
+        display: flex;
+        // gap: 5vw;
+        padding: 1vw;
+
+        .cart-item-action {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 40%;
+          cursor: pointer;
+          font-family: "Poppins";
+          .col-1 {
+            display: flex;
+            flex-direction: row;
+            width: 50%;
+            text-align: center;
+            gap: 1vw;
+            // border: solid 1px black;
+
+            .item-minus {
+              width: 25%;
+              font-size: 2rem;
+              color: white;
+              // border: solid 1px black;
+            }
+            .item-plus {
+              width: 25%;
+              font-size: 2rem;
+              color: white;
+              // border: solid 1px black;
+            }
+            .quantity-input {
+              width: 2.5vw;
+              text-align: center;
+              font-size: 2rem;
+              background-color: transparent;
+              border: none;
+            }
+          }
+          .col-2 {
+            width: 25%;
+            text-align: center;
+            // border: solid 1px black;
+            .cart-item-price {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+          .col-3 {
+            width: 25%;
+            text-align: center;
+            // border: solid 1px black;
+            .cart-item-delete {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .cart-item-name {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 60%;
+          font-family: "Poppins";
+
+          // border: solid 1px black;
+        }
+        &:nth-child(odd) {
+          background-color: #9ac7e0;
+        }
+        &:nth-child(even) {
+          background-color: #cdecff;
+        }
+      }
+    }
+
+    .cart-total {
+      background-color: rgb(70, 145, 216);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      position: relative;
+      .box-header {
+        position: absolute;
+        top: 0.5vw;
+        left: 0.5vw;
+        color: white;
+        font-size: 1rem;
+      }
+    }
+    .cart-checkout {
+      background-color: rgb(74, 108, 201);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: black;
+      cursor: pointer;
+      position: relative;
+      .box-header {
+        position: absolute;
+        top: 0.5vw;
+        left: 0.5vw;
+        color: white;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* For Firefox */
 }
