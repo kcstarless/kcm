@@ -34,7 +34,8 @@
     </div>
 
     <div class="cart-total">
-        <div class="box-header">Total</div> 
+        <div class="box-header">Total</div>
+        <%= link_to "Delivery: Pickup", "#", data: { action: "click->submenu#toggleModal", target: "delivery" }, class: "box-footer" %>
         <strong><%= number_to_currency(current_user&.active_cart&.total_price || 0) %></strong>
     </div>
 

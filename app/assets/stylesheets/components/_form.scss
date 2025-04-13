@@ -103,7 +103,7 @@
         // border-bottom: solid 1px gray;
         display: flex;
         // gap: 5vw;
-        padding: 1vw;
+        // padding: 1vw;
 
         .cart-item-action {
           display: flex;
@@ -192,6 +192,13 @@
         position: absolute;
         top: 0.5vw;
         left: 0.5vw;
+        color: white;
+        font-size: 1rem;
+      }
+      .box-footer {
+        position: absolute;
+        bottom: 0.5vw;
+        right: 0.5vw;
         color: white;
         font-size: 1rem;
       }

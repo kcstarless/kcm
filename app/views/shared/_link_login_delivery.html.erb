@@ -1,12 +1,13 @@
 <div class="submenu-login-shop">
     <div class="login-delivery-container">
-        <%= link_to "Delivery", "#", data: { action: "click->submenu#toggleModal", target: "delivery" } %>
+        <%# link_to "Delivery", "#", data: { action: "click->submenu#toggleModal", target: "delivery" } %>
         <% if authenticated? %>
+                    Hi,<%= Current.user.first_name %>!
             <%= button_to "Logout", session_path, 
                 method: :delete, 
                 class: "btn btn-logout",
                 data: { turbo_confirm: "Are you sure you want to logout?" } %>
-            Hi,<%= Current.user.first_name %>!
+
         <% else %>
             <%= link_to "Login", "#", data: { action: "click->submenu#toggleModal", target: "login" } %>
             <%= link_to "Register", "#", data: { action: "click->submenu#toggleModal", target: "register" } %>

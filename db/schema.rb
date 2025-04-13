@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_10_015633) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_12_231434) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -66,6 +66,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_015633) do
     t.string "status", default: "active", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "delivery_method"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -91,7 +92,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_015633) do
 
   create_table "customers", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "preferred_delivery_method", default: "pickup"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_customers_on_user_id"
