@@ -14,16 +14,22 @@
       height: 20vh;
 
       &.col1 {
-        background-color: var(--color-form-1);
+        // background-color: var(--color-form-1);
+        border: solid 2px black;
       }
 
       &.col2 {
-        background-color: var(--color-form-2);
+        // background-color: var(--color-form-2);
+        border: solid 2px black;
+        border-left: none;
       }
 
       &.col3 {
-        background-color: var(--color-form-3);
+        // background-color: var(--color-form-3);
         position: relative;
+        border: solid 2px black;
+        border-left: none;
+        // background-color: black;
 
         .forgot-password-link {
           position: absolute;
@@ -47,6 +53,11 @@
       color: var(--color-text);
       text-align: center;
       font-family: "Nova Mono";
+      border-bottom: 1px solid rgb(211, 211, 211);
+
+      &:last-child {
+        border-bottom: none;
+      }
 
       &::placeholder {
         color: black;
@@ -60,6 +71,7 @@
       &:focus {
         outline: none;
         border-color: white;
+        border-bottom: 1px solid rgb(211, 211, 211);
       }
       &:focus::placeholder {
         opacity: 0; /* Hide the placeholder when the input is focused */
@@ -85,7 +97,7 @@
       position: absolute;
       top: 0.5vw;
       left: 0.5vw;
-      color: white;
+      color: black;
       font-size: 1rem;
       font-weight: normal;
     }
@@ -97,10 +109,11 @@
       align-items: center;
       font-size: 1.3rem;
       color: black;
+      border: solid 2px black;
       // gap: 2vw;
       .cart-item {
         width: 100%;
-        // border-bottom: solid 1px gray;
+        border-bottom: solid 1px rgb(218, 218, 218);
         display: flex;
         // gap: 5vw;
         // padding: 1vw;
@@ -112,6 +125,7 @@
           width: 40%;
           cursor: pointer;
           font-family: "Poppins";
+
           .col-1 {
             display: flex;
             flex-direction: row;
@@ -123,19 +137,17 @@
             .item-minus {
               width: 25%;
               font-size: 2rem;
-              color: white;
               // border: solid 1px black;
             }
             .item-plus {
               width: 25%;
               font-size: 2rem;
-              color: white;
               // border: solid 1px black;
             }
             .quantity-input {
               width: 2.5vw;
               text-align: center;
-              font-size: 2rem;
+              font-size: 1.2rem;
               background-color: transparent;
               border: none;
             }
@@ -172,39 +184,41 @@
 
           // border: solid 1px black;
         }
-        &:nth-child(odd) {
-          background-color: #9ac7e0;
-        }
-        &:nth-child(even) {
-          background-color: #cdecff;
-        }
+        // &:nth-child(odd) {
+        //   background-color: #ffffff;
+        // }
+        // &:nth-child(even) {
+        //   background-color: #f3f3f3;
+        // }
       }
     }
 
     .cart-total {
-      background-color: rgb(70, 145, 216);
+      // background-color: var(--color-acc-1);
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 2rem;
       position: relative;
+      border: solid 2px black;
+      border-left: none;
       .box-header {
         position: absolute;
         top: 0.5vw;
         left: 0.5vw;
-        color: white;
+        color: black;
         font-size: 1rem;
       }
       .box-footer {
         position: absolute;
         bottom: 0.5vw;
         right: 0.5vw;
-        color: white;
+        color: black;
         font-size: 1rem;
       }
     }
     .cart-checkout {
-      background-color: rgb(74, 108, 201);
+      background-color: var(--color-acc-5);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -212,13 +226,78 @@
       color: black;
       cursor: pointer;
       position: relative;
+      border: solid 2px black;
+      border-left: none;
       .box-header {
         position: absolute;
         top: 0.5vw;
         left: 0.5vw;
-        color: white;
+        color: black;
         font-size: 1rem;
       }
+    }
+  }
+
+  &.delivery {
+    display: flex;
+    flex-direction: row;
+    font-family: "Poppins";
+    width: 100%;
+    .form-container {
+      width: 70%;
+      border: solid 2px black;
+      .header {
+        padding: 2vw;
+        border-bottom: solid 2px gray;
+      }
+
+      .option-delivery {
+        padding: 2vw;
+        display: flex;
+        flex-direction: column;
+        gap: 2vw;
+        border-bottom: solid 2px gray;
+
+        .form-delivery-postcode {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          // gap: 1vw;
+          .postcode {
+            width: 30%;
+            font-size: 1.5rem;
+            text-align: center;
+            background-color: transparent;
+            border: 2px solid black;
+            box-sizing: border-box;
+            padding: 10px;
+            color: var(--color-text);
+          }
+        }
+      }
+
+      .option-pickup {
+        padding: 2vw;
+      }
+
+      .option-radio {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 1vw;
+        .large-radio {
+          cursor: pointer;
+          width: 30px;
+          height: 30px;
+          // transform: scale(1.5); /* Adjust scale as needed */
+        }
+      }
+    }
+
+    .form-submit {
+      border: solid 2px black;
+      border-left: none;
+      width: 30%;
     }
   }
 }

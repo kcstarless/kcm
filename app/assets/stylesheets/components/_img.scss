@@ -3,3 +3,25 @@ img {
     width: 100%;
   }
 }
+
+.icon {
+  width: clamp(2rem, 7vw, 4rem);
+  transition: transform 0.3s ease-in-out;
+  // position: relative;
+  &:hover {
+    transform: rotate(-20deg);
+  }
+
+  &.delete-item {
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: black;
+    &:hover {
+      transform: rotate(0);
+      transform: scale(1.1);
+    }
+  }
+}

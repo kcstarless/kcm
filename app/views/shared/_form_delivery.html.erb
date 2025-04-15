@@ -1,12 +1,41 @@
-<div class="form delivery">
-    <h1>Delivery</h1>
-    <%= form_with url: session_path do |form| %>
-        <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-        <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-        <%= form.submit "Sign in" %>
-    <% end %>
-    <br>
+<div class="form delivery" data-controller="delivery">
+    <div class="form-container">
 
-    <%= link_to "Forgot password?", new_password_path %>
+        <div class="options">
+            <div class="header">
+                <h1>We Deliver to Postcode or You can Click & Collect</h1>
+                <p>Please select your delivery option. You can change this any time, by clicking on the "Delivery" link in the cart.</p>
+            </div>
+            
+            <div class="option-delivery">
+                <div class="option-radio">
+                    <%= radio_button_tag "delivery_option", "pickup", current_user&.active_cart&.delivery_method == "delivery", id: "delivery", class: "large-radio", data: { delivery_target: "deliveryRadio" }%>
+                    <%= label_tag "delivery", "Delivey to Me" %>
+                </div>
+                <p>Which postcode do you wish to have your order sent to?</p>
+                <%= form_with url: "/check_postcode", method: :post, class: "form-delivery-postcode" do %>
+                    <%= text_field_tag "postcode", nil, placeholder: "Enter your postcode", class: "postcode", maxlength: 4 %>
+                    <%= button_tag "Check", type: "submit", class: "btn check-postcode", data: { action: "click->delivery#checkPostcode" } %>
+                <% end %>
+                <div class="postcode-result" data-delivery-target="postcodeResult"></div>
+            </div>
 
+            <div class="option-pickup">
+                <div class="option-radio">
+                    <%= radio_button_tag "delivery_option", "pickup", current_user&.active_cart&.delivery_method == "pickup", id: "pickup", class: "large-radio", data: { info: "Choose this option for Click & Collect." } %>
+                    <%= label_tag "pickup", "Click & Collect" %>
+                </div>
+                <p>Pick a date and time, we'll have it ready for you!</p>
+            </div>
+        </div>
+
+        <div class="date-time-option hidden">
+        
+        </div>
+
+    </div>
+
+    <div class="form-submit">
+        <%= button_tag "Continue", type: "submit", class: "btn continue" %>
+    </div>
 </div>

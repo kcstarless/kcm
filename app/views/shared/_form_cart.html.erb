@@ -21,7 +21,7 @@
                         <div class="col-3">
                             <div class="cart-item-delete">
                                 <%= button_to cart_item_path(cart_item), method: :delete, class: "btn delete-cart-item" do %>
-                                    &times;
+                                    <%= image_tag("icons/icon_delete_black.svg", alt: "Delete Item", class: "icon delete-item") %>
                                 <% end %>
                             </div>
                         </div>
@@ -41,6 +41,6 @@
 
     <div class="cart-checkout">
         <div class="box-header">Checkout</div>
-        <%= link_to "Checkout", "#", class: "btn btn-checkout" %>
+        <%= link_to "Pay", "#", class: "btn btn-checkout" %>
     </div>
 </div>

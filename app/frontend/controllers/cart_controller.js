@@ -39,6 +39,8 @@ export default class extends Controller {
     }
   }
 
+  expandDelivery(event) {}
+
   // addToCart(event) {
   //   const productId = event.currentTarget.dataset.productId;
   //   const quantityElement = document.getElementById(

@@ -61,5 +61,9 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "turbo-rails", "<2.0.0"
+gem "turbo-rails", "~> 2.0"
 gem "faker"
+
+gem "geocoder", "~> 1.8"
+
+gem "opencage-geocoder", "~> 3.2"

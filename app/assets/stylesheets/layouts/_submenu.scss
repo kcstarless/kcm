@@ -85,14 +85,6 @@
           align-items: center; /* Center text vertically */
         }
       }
-      .icon {
-        width: clamp(2rem, 7vw, 4rem);
-        transition: transform 0.3s ease-in-out;
-        // position: relative;
-        &:hover {
-          transform: rotate(-20deg);
-        }
-      }
     }
   }
 }
