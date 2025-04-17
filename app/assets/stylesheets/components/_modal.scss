@@ -7,7 +7,7 @@
     background: white;
     // box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out; /* Smooth transition for sliding in */
-    // z-index: 9999;
+    z-index: 10;
 
     &.hidden {
       display: opacity(0);
@@ -25,7 +25,6 @@
 
     #loginForm,
     #registerForm,
-    #deliveryForm,
     #cartForm {
       display: none; // Hide forms by default
       // padding: 2vw;
@@ -33,6 +32,39 @@
       &.active {
         display: block; // Show when active
       }
+    }
+  }
+
+  &.modalDelivery {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background: white;
+    // box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out; /* Smooth transition for sliding in */
+    z-index: 20;
+
+    &.hidden {
+      display: opacity(0);
+      transform: translateY(-100%); /* Start off-screen */
+      .btn {
+        &.modal-close {
+          display: none;
+        }
+      }
+    }
+
+    &:not(.hidden) {
+      transform: translateY(0%); /* Slide into view */
+    }
+
+    .button-nav {
+      position: relative;
+    }
+
+    #deliveryForm {
     }
   }
 

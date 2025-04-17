@@ -2,51 +2,18 @@ import { Controller } from "@hotwired/stimulus";
 import { menu } from "./consts/const_menu"; // Adjust the path according to your project structure
 
 export default class extends Controller {
-  static targets = ["title", "list", "loginContainer", "modalBody"];
+  static targets = [
+    "title",
+    "list",
+    "loginContainer",
+    "modalBody",
+    "modalDelivery",
+  ];
 
   connect() {
     console.log("Stimulus: submenu controller connected.");
     this.submenuBar();
   }
-
-  // openSubmenu(e) {
-  //   e.preventDefault();
-
-  //   const color = e.currentTarget.dataset.color;
-
-  //   if (color) {
-  //     this.modalTarget.style.backgroundColor = color; // Apply parent's background color
-  //   }
-
-  //   this.modalTarget.classList.add("active");
-
-  //   const title = e.currentTarget.dataset.title; // e.g. "Visit Us"
-  //   const submenuList = menu.find((submenu) => submenu.title === title);
-  //   // Parent menu title menu
-  //   this.titleTarget.textContent = submenuList.title;
-  //   this.submenu(submenuList, false);
-  // }
-
-  // closeSubmenu(e) {
-  //   const url = e.currentTarget.href;
-  //   console.log(url);
-
-  //   const submenuLinkEvent = new CustomEvent("submenuLinkedClicked", {
-  //     detail: { url },
-  //   });
-  //   document.dispatchEvent(submenuLinkEvent);
-
-  //   this.modalTarget.classList.add("closing");
-
-  //   // Listen for the end of the animation to hide the modal
-  //   this.modalTarget.addEventListener(
-  //     "animationend",
-  //     () => {
-  //       this.modalTarget.classList.remove("active", "closing");
-  //     },
-  //     { once: true }
-  //   );
-  // }
 
   submenuBar() {
     const path = window.location.pathname;
@@ -103,8 +70,25 @@ export default class extends Controller {
 
   closeModal() {
     this.loginContainerTarget.classList.add("hidden"); // Hide the modal
+
+    // Reset all forms inside the modal
     this.modalBodyTarget.querySelectorAll("div").forEach((form) => {
       form.classList.add("hidden"); // Hide all forms
     });
+
+    // Dispatch a custom event to trigger reset logic in other controllers
+    const resetEvent = new Event("modalClosed");
+    document.dispatchEvent(resetEvent);
+  }
+
+  // Load delivery form modal
+  toggleDeliveryModal(event) {
+    event.preventDefault();
+    // this.closeModal();
+    this.modalDeliveryTarget.classList.remove("hidden");
+  }
+  closeDeliveryModal(event) {
+    event.preventDefault();
+    this.modalDeliveryTarget.classList.add("hidden"); // Hide the modal
   }
 }

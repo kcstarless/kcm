@@ -38,34 +38,4 @@ export default class extends Controller {
       hiddenField.value = currentQuantity;
     }
   }
-
-  expandDelivery(event) {}
-
-  // addToCart(event) {
-  //   const productId = event.currentTarget.dataset.productId;
-  //   const quantityElement = document.getElementById(
-  //     `product-quantity-${productId}`
-  //   );
-  //   const quantity = parseInt(quantityElement.textContent, 10);
-
-  //   fetch("/cart_items", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
-  //         .content,
-  //     },
-  //     body: JSON.stringify({ product_id: productId, quantity: quantity }),
-  //   })
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         alert("Product added to cart!");
-  //       } else {
-  //         alert("Failed to add product to cart.");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error adding product to cart:", error);
-  //     });
-  // }
 }

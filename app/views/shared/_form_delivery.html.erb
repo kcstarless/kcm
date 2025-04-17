@@ -1,7 +1,7 @@
 <div class="form delivery" data-controller="delivery">
-    <div class="form-container">
+    <turbo-frame id="tf-delivery-option" class="form-container">
 
-        <div class="options">
+        <div class="options" data-delivery-target="options">
             <div class="header">
                 <h1>We Deliver to Postcode or You can Click & Collect</h1>
                 <p>Please select your delivery option. You can change this any time, by clicking on the "Delivery" link in the cart.</p>
@@ -9,33 +9,54 @@
             
             <div class="option-delivery">
                 <div class="option-radio">
-                    <%= radio_button_tag "delivery_option", "pickup", current_user&.active_cart&.delivery_method == "delivery", id: "delivery", class: "large-radio", data: { delivery_target: "deliveryRadio" }%>
+                    <%= radio_button_tag "delivery_option", "delivery", current_user&.active_cart&.delivery_method == "delivery", id: "delivery", class: "large-radio", data: { delivery_target: "deliveryRadio" }%>
                     <%= label_tag "delivery", "Delivey to Me" %>
                 </div>
                 <p>Which postcode do you wish to have your order sent to?</p>
                 <%= form_with url: "/check_postcode", method: :post, class: "form-delivery-postcode" do %>
                     <%= text_field_tag "postcode", nil, placeholder: "Enter your postcode", class: "postcode", maxlength: 4 %>
                     <%= button_tag "Check", type: "submit", class: "btn check-postcode", data: { action: "click->delivery#checkPostcode" } %>
+                    &nbsp;&nbsp;<div class="loading spinner hidden" data-delivery-target="loadingSpinner"></div>
                 <% end %>
                 <div class="postcode-result" data-delivery-target="postcodeResult"></div>
             </div>
 
             <div class="option-pickup">
                 <div class="option-radio">
-                    <%= radio_button_tag "delivery_option", "pickup", current_user&.active_cart&.delivery_method == "pickup", id: "pickup", class: "large-radio", data: { info: "Choose this option for Click & Collect." } %>
+                    <%= radio_button_tag "delivery_option", "pickup", current_user&.active_cart&.delivery_method == "pickup", id: "pickup", class: "large-radio" %>
                     <%= label_tag "pickup", "Click & Collect" %>
                 </div>
                 <p>Pick a date and time, we'll have it ready for you!</p>
             </div>
         </div>
 
-        <div class="date-time-option hidden">
-        
+        <div class="date-time hidden" data-delivery-target="dateTime">
+            <div class="header">
+                <h1>Please select the date and time for your order</h1>
+                <p>We will have your order ready for you to collect at the selected time.</p>
+            </div>
+            <div class="date-time-picker" data-controller="datetimepicker">
+                <div class="date-picker" data-datetimepicker-target="datePicker">
+                    <div class="date-header">
+                        <h2>Select a Date &dArr;</h2>
+                    </div>
+                </div>
+                <div class="time-picker" data-datetimepicker-target="timePicker">
+                    <div class="date-header">
+                        <h2>Time Slot &dArr;</h2>
+                    </div>
+                    <!-- Time options will be dynamically populated here -->
+                </div>
+            </div>
         </div>
 
-    </div>
+    </turbo-frame>
 
     <div class="form-submit">
-        <%= button_tag "Continue", type: "submit", class: "btn continue" %>
+        <div class="button-nav">
+            <button class="btn modal-close-delivery" data-action="click->submenu#closeDeliveryModal">&#x25c0;</button>
+            <button class="btn modal-close" data-action="click->submenu#closeModal">&times;</button>
+        </div>
+        <%= button_tag "Continue", class: "btn continue", data: { action: "click->delivery#continue" } %>
     </div>
 </div>

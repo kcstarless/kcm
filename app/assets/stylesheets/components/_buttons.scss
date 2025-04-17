@@ -41,21 +41,42 @@
 
   &.modal-close {
     position: absolute;
-    top: -1vw;
+    top: 0;
     right: 1vw;
-    // width: 5rem;
-    // height: 5rem;
+    width: 5rem;
+    height: 5rem;
     background-color: transparent;
     border: none;
     font-size: 5rem;
     color: black;
+    font-weight: bold;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 10;
+    // border: solid 1px black;
     transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* Add smooth transition for both transform and color */
     &:hover {
       transform: rotate(90deg); /* Rotate 180 degrees on hover */
       color: white;
-      scale: 1.2;
+    }
+  }
+
+  &.modal-close-delivery {
+    position: absolute;
+    top: 0;
+    left: 1vw;
+    width: 5rem;
+    height: 5rem;
+    background-color: transparent;
+    border: none;
+    font-size: 2.5rem;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* Add smooth transition for both transform and color */
+    &:hover {
+      transform: rotate(90deg); /* Rotate 180 degrees on hover */
+      color: white;
     }
   }
 
@@ -137,7 +158,7 @@
     height: 100%;
     background-color: var(--color-acc-5);
     border: none;
-    font-size: 2rem;
-    font-family: "Nova Mono";
+    font-size: 3rem;
+    font-family: "Paytone One";
   }
 }

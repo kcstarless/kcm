@@ -23,4 +23,28 @@ class DeliveryController < ApplicationController
       render json: { valid: false, message: "Invalid postcode." }
     end
   end
+
+  def update_delivery_method
+    delivery_method = params[:delivery_method]
+    postcode = params[:postcode]
+    # # Validate delivery method
+    # unless %w[delivery pickup].include?(delivery_method)
+    #   render turbo_stream: turbo_stream.replace("tf-delivery-option", partial: "shared/error", locals: { message: "Invalid delivery method." }), status: :unprocessable_entity
+    #   return
+    # end
+
+    # # Validate postcode (if applicable)
+    # if delivery_method == "delivery" && postcode.blank?
+    #   render turbo_stream: turbo_stream.replace("tf-delivery-option", partial: "shared/error", locals: { message: "Invalid postcode." }), status: :unprocessable_entity
+    #   return
+    # end
+
+    # # Update the cart with the delivery method and postcode
+    cart = current_user.active_cart
+
+    if cart
+      cart.update(delivery_method: delivery_method)
+      render turbo_stream: turbo_stream.replace("tf-delivery-option", partial: "shared/form_setDatetime", locals: { cart: cart })
+    end
+  end
 end

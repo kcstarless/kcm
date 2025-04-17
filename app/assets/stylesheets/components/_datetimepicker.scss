@@ -1,0 +1,95 @@
+/* Styles for the scrollable date and time pickers */
+.date-time-picker {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+  padding: 2vw;
+  border-bottom: solid 2px gray;
+}
+
+.date-picker,
+.time-picker {
+  width: 50%;
+  height: 200px;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  cursor: all-scroll;
+}
+
+.date-header {
+  position: sticky;
+  width: 100%;
+  height: 34%;
+  left: 0;
+  top: 0;
+  background-color: var(--color-acc-5);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide scrollbar for clean look */
+.date-picker::-webkit-scrollbar,
+.time-picker::-webkit-scrollbar {
+  display: none;
+}
+
+/* Add empty space at top and bottom to allow centering */
+.date-picker::before,
+.date-picker::after,
+.time-picker::before,
+.time-picker::after {
+  content: "";
+  display: block;
+  height: 75px; /* This creates space to position items in the middle */
+}
+
+.date-option,
+.time-option,
+.empty-option {
+  height: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.2s;
+  scroll-snap-align: center;
+}
+
+/* Style for the selected option */
+.date-option.selected,
+.time-option.selected {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #000;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+// /* Selection indicator - highlight area in the middle */
+// .date-picker::after,
+// .time-picker::after {
+//   content: "";
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   top: 50%;
+//   height: 50px;
+//   transform: translateY(-50%);
+//   background-color: rgba(0, 0, 0, 0.03);
+//   pointer-events: none;
+//   z-index: 0;
+//   border-top: 1px solid rgba(0, 0, 0, 0.1);
+//   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+// }

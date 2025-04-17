@@ -218,16 +218,19 @@
       }
     }
     .cart-checkout {
+      width: 100%;
       background-color: var(--color-acc-5);
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 2rem;
+      text-align: center;
+      font-size: 1.5rem;
       color: black;
       cursor: pointer;
       position: relative;
       border: solid 2px black;
       border-left: none;
+      font-family: "Righteous";
       .box-header {
         position: absolute;
         top: 0.5vw;
@@ -243,53 +246,82 @@
     flex-direction: row;
     font-family: "Poppins";
     width: 100%;
+    min-height: 75vh;
+
     .form-container {
       width: 70%;
       border: solid 2px black;
-      .header {
-        padding: 2vw;
-        border-bottom: solid 2px gray;
-      }
 
-      .option-delivery {
-        padding: 2vw;
-        display: flex;
-        flex-direction: column;
-        gap: 2vw;
-        border-bottom: solid 2px gray;
+      .options {
+        .header {
+          padding: 2vw;
+          border-bottom: solid 2px gray;
+        }
 
-        .form-delivery-postcode {
+        .option-delivery {
+          padding: 2vw;
+          display: flex;
+          flex-direction: column;
+          gap: 2vw;
+          border-bottom: solid 2px gray;
+
+          .form-delivery-postcode {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            // gap: 1vw;
+            .postcode {
+              width: 50%;
+              font-size: 1.5rem;
+              text-align: center;
+              background-color: transparent;
+              border: 2px solid black;
+              box-sizing: border-box;
+              padding: 10px;
+              color: var(--color-text);
+            }
+          }
+        }
+
+        .option-pickup {
+          display: flex;
+          flex-direction: column;
+          gap: 2vw;
+          padding: 2vw;
+        }
+
+        .option-radio {
           display: flex;
           justify-content: start;
           align-items: center;
-          // gap: 1vw;
-          .postcode {
-            width: 30%;
-            font-size: 1.5rem;
-            text-align: center;
-            background-color: transparent;
-            border: 2px solid black;
-            box-sizing: border-box;
-            padding: 10px;
-            color: var(--color-text);
+          font-size: 2rem;
+          gap: 1vw;
+          .large-radio {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            // transform: scale(1.5); /* Adjust scale as needed */
           }
+        }
+
+        &.hidden {
+          display: none;
         }
       }
 
-      .option-pickup {
-        padding: 2vw;
-      }
+      .date-time {
+        .header {
+          padding: 2vw;
+          border-bottom: solid 2px gray;
+        }
 
-      .option-radio {
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        gap: 1vw;
-        .large-radio {
-          cursor: pointer;
-          width: 30px;
-          height: 30px;
-          // transform: scale(1.5); /* Adjust scale as needed */
+        &.hidden {
+          display: none;
+        }
+
+        &.visible {
+          display: block;
+          animation: slideIn 0.3s ease-in-out;
         }
       }
     }
@@ -298,6 +330,20 @@
       border: solid 2px black;
       border-left: none;
       width: 30%;
+      :hover {
+        color: white;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
   }
 }

@@ -41,4 +41,6 @@ Rails.application.routes.draw do
   resources :cart_items, only: [ :create, :update, :destroy ]
 
   resources :check_postcode, to: "delivery#check_postcode"
+
+  resources :update_delivery_method, to: "delivery#update_delivery_method"
 end

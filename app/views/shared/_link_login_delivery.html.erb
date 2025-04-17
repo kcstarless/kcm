@@ -40,16 +40,12 @@
             <div id="registerForm">
                 <%= render partial: "shared/form_registration", locals: { user: User.new } %>
             </div>
-
-            <!-- Delivery From -->
-            <div id="deliveryForm">
-                <%= render partial: "shared/form_delivery", locals: { user: User.new } %>
-            </div>
+            
             <turbo-frame id="tf-cart">
                 <div id="cartForm">
                     <%= render partial: "shared/form_cart", locals: { user: User.new } %>
                 </div>
             </turbo-frame>
         </div>
-</div>
+    </div>
 </div>
