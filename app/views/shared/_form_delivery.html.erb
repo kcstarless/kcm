@@ -3,8 +3,13 @@
 
         <div class="options" data-delivery-target="options">
             <div class="header">
+                <% if current_user&.active_cart&.delivery_method? %>
+                    <div class="current-delivery-method"><%= current_user&.delivery_details %></div>
+                <% else %>
+                    <div class="current-delivery-method">No delivery method selected</div>
+                <% end %>
                 <h1>We Deliver to Postcode or You can Click & Collect</h1>
-                <p>Please select your delivery option. You can change this any time, by clicking on the "Delivery" link in the cart.</p>
+                <p>Please select your delivery option. You can change this any time, by clicking on the link in the cart.</p>
             </div>
             
             <div class="option-delivery">
@@ -27,6 +32,13 @@
                     <%= label_tag "pickup", "Click & Collect" %>
                 </div>
                 <p>Pick a date and time, we'll have it ready for you!</p>
+            </div>
+
+            <div class="option-footer">
+                            <%= image_tag("logo_dark_tilt.svg", 
+                alt: "Your Logo", 
+                class: "logo"
+                ) %>
             </div>
         </div>
 
@@ -53,10 +65,15 @@
     </turbo-frame>
 
     <div class="form-submit">
+        <div class="loading spinner-save hidden" data-delivery-target="loadingSpinnerSave"></div>
         <div class="button-nav">
             <button class="btn modal-close-delivery" data-action="click->submenu#closeDeliveryModal">&#x25c0;</button>
             <button class="btn modal-close" data-action="click->submenu#closeModal">&times;</button>
         </div>
-        <%= button_tag "Continue", class: "btn continue", data: { action: "click->delivery#continue" } %>
+       <div class="info" data-delivery-target="info">Please select a delivery option to continue.</div>
+        <%= button_tag class: "btn continue hidden", data: { delivery_target: "continueBtn", action: "click->delivery#continue" } do %>
+            <p>Continue</p>
+        <% end %>
+        <%= button_tag "Save", class: "btn save hidden", data: { delivery_target: "saveBtn", action: "click->delivery#save" } %>
     </div>
 </div>

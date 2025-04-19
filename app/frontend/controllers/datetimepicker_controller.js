@@ -223,7 +223,8 @@ export default class extends Controller {
     const selectedTime = this.timePickerTarget.querySelector(
       ".time-option.selected"
     )?.dataset.value;
-
+    console.log("Selected Date:", selectedDate); // Debugging log
+    console.log("Selected Time:", selectedTime); // Debugging log
     return {
       date: selectedDate,
       time: selectedTime,

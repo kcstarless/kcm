@@ -38,9 +38,10 @@ Rails.application.routes.draw do
     get "/:id", to: "shops#show", as: :shopfront
   end
 
+  # Cart routes
   resources :cart_items, only: [ :create, :update, :destroy ]
+  get "cart", to: "carts#show", as: :cart
+  patch "cart/update_delivery", to: "carts#update_delivery", as: :cart_update_delivery
 
   resources :check_postcode, to: "delivery#check_postcode"
-
-  resources :update_delivery_method, to: "delivery#update_delivery_method"
 end

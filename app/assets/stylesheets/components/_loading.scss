@@ -3,10 +3,41 @@
     display: inline-block;
     width: 2rem;
     height: 2rem;
-    border: 3px solid rgba(0, 0, 0, 0.2);
-    border-top: 3px solid black;
+    border: 3px solid var(--color-acc-5);
+    border-top: 3px solid rgb(252, 137, 7);
     border-radius: 50%;
     animation: spin 1s linear infinite;
+  }
+
+  &.spinner-save {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* Use a different transform technique that won't conflict with the rotation */
+    margin-left: -2.5rem; /* Half of width */
+    margin-top: -2.5rem; /* Half of height */
+    display: inline-block;
+    width: 5rem;
+    height: 5rem;
+    border: 5px solid rgb(253, 251, 251);
+    border-top: 5px solid rgb(0, 0, 0);
+    border-radius: 50%;
+    animation: spin 3s linear infinite;
+  }
+
+  &.truck {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* Use a different transform technique that won't conflict with the rotation */
+    margin-left: -2.5rem; /* Half of width */
+    margin-top: -2.5rem; /* Half of height */
+    display: inline-block;
+
+    .truck-animation {
+      width: 5rem;
+      height: 5rem;
+    }
   }
 
   &.hidden {

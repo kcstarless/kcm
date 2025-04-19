@@ -41,11 +41,11 @@
 
   &.modal-close {
     position: absolute;
-    top: 0;
-    right: 1vw;
-    width: 5rem;
-    height: 5rem;
+    top: 0.9vw;
+    right: 0.5vw;
+    line-height: 1.5rem;
     background-color: transparent;
+    vertical-align: center;
     border: none;
     font-size: 5rem;
     color: black;
@@ -53,7 +53,7 @@
     cursor: pointer;
     z-index: 10;
     // border: solid 1px black;
-    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* Add smooth transition for both transform and color */
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
     &:hover {
       transform: rotate(90deg); /* Rotate 180 degrees on hover */
       color: white;
@@ -62,18 +62,21 @@
 
   &.modal-close-delivery {
     position: absolute;
-    top: 0;
-    left: 1vw;
-    width: 5rem;
-    height: 5rem;
+    top: 0.9vw;
+    left: 0.5vw;
+    // width: 4rem;
+    // height: 4rem;
     background-color: transparent;
+    vertical-align: center;
     border: none;
-    font-size: 2.5rem;
+    font-size: 3rem;
+    line-height: 1.5rem;
     color: black;
     font-weight: bold;
+    // border: solid 1px black;
     cursor: pointer;
     z-index: 10;
-    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* Add smooth transition for both transform and color */
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
     &:hover {
       transform: rotate(90deg); /* Rotate 180 degrees on hover */
       color: white;
@@ -147,13 +150,19 @@
     font-size: 1.5rem;
     border: 2px solid black;
     background-color: black;
-    color: white;
+    color: black;
     border-left: none;
-    // background-color: transparent;
+    background-color: var(--color-acc-5);
     padding: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    &:hover {
+      color: white;
+    }
   }
 
-  &.continue {
+  &.continue,
+  &.save {
     width: 100%;
     height: 100%;
     background-color: var(--color-acc-5);

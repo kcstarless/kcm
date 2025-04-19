@@ -1,6 +1,6 @@
 .form {
   width: 100%;
-
+  font-family: "Poppins";
   &.login,
   &.registration {
     display: grid;
@@ -92,31 +92,20 @@
     display: grid;
     grid-template-columns: 0.6fr 0.2fr 0.2fr;
     position: relative;
+    color: black;
 
-    h3 {
-      position: absolute;
-      top: 0.5vw;
-      left: 0.5vw;
-      color: black;
-      font-size: 1rem;
-      font-weight: normal;
-    }
     .cart-items {
       background-color: white;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-size: 1.3rem;
-      color: black;
       border: solid 2px black;
       // gap: 2vw;
       .cart-item {
         width: 100%;
         border-bottom: solid 1px rgb(218, 218, 218);
         display: flex;
-        // gap: 5vw;
-        // padding: 1vw;
 
         .cart-item-action {
           display: flex;
@@ -124,7 +113,6 @@
           align-items: center;
           width: 40%;
           cursor: pointer;
-          font-family: "Poppins";
 
           .col-1 {
             display: flex;
@@ -132,17 +120,14 @@
             width: 50%;
             text-align: center;
             gap: 1vw;
-            // border: solid 1px black;
 
             .item-minus {
               width: 25%;
               font-size: 2rem;
-              // border: solid 1px black;
             }
             .item-plus {
               width: 25%;
               font-size: 2rem;
-              // border: solid 1px black;
             }
             .quantity-input {
               width: 2.5vw;
@@ -179,22 +164,14 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          font-size: 1rem;
           width: 60%;
           font-family: "Poppins";
-
-          // border: solid 1px black;
         }
-        // &:nth-child(odd) {
-        //   background-color: #ffffff;
-        // }
-        // &:nth-child(even) {
-        //   background-color: #f3f3f3;
-        // }
       }
     }
 
     .cart-total {
-      // background-color: var(--color-acc-1);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -202,20 +179,7 @@
       position: relative;
       border: solid 2px black;
       border-left: none;
-      .box-header {
-        position: absolute;
-        top: 0.5vw;
-        left: 0.5vw;
-        color: black;
-        font-size: 1rem;
-      }
-      .box-footer {
-        position: absolute;
-        bottom: 0.5vw;
-        right: 0.5vw;
-        color: black;
-        font-size: 1rem;
-      }
+      font-family: "Paytone One";
     }
     .cart-checkout {
       width: 100%;
@@ -225,19 +189,44 @@
       align-items: center;
       text-align: center;
       font-size: 1.5rem;
-      color: black;
-      cursor: pointer;
       position: relative;
       border: solid 2px black;
       border-left: none;
-      font-family: "Righteous";
-      .box-header {
-        position: absolute;
-        top: 0.5vw;
-        left: 0.5vw;
-        color: black;
-        font-size: 1rem;
-      }
+      cursor: pointer;
+      font-family: "Paytone One";
+    }
+
+    .box-topleft {
+      position: absolute;
+      top: 0.5vw;
+      left: 0.5vw;
+      font-size: 1rem;
+      text-transform: uppercase;
+      font-family: "Poppins";
+      font-weight: bold;
+    }
+    .box-topright {
+      position: absolute;
+      top: 0.5vw;
+      right: 0.5vw;
+      font-size: 1rem;
+    }
+    .box-bottomleft {
+      position: absolute;
+      bottom: 0.5vw;
+      left: 0.5vw;
+      font-size: 1rem;
+    }
+    .box-bottomright {
+      position: absolute;
+      bottom: 0.5vw;
+      right: 0.5vw;
+      font-size: 1rem;
+      text-transform: uppercase;
+      text-decoration: underline;
+      // border: solid 1px black;
+      padding: 0 0.5vw;
+      font-family: "Poppins";
     }
   }
 
@@ -246,7 +235,7 @@
     flex-direction: row;
     font-family: "Poppins";
     width: 100%;
-    min-height: 75vh;
+    // min-height: 75vh;
 
     .form-container {
       width: 70%;
@@ -255,7 +244,13 @@
       .options {
         .header {
           padding: 2vw;
-          border-bottom: solid 2px gray;
+          border-bottom: solid 2px rgb(226, 226, 226);
+          .current-delivery-method {
+            font-size: 2rem;
+            font-weight: bold;
+            padding-bottom: 2vw;
+            color: var(--color-acc-5);
+          }
         }
 
         .option-delivery {
@@ -263,7 +258,7 @@
           display: flex;
           flex-direction: column;
           gap: 2vw;
-          border-bottom: solid 2px gray;
+          border-bottom: solid 2px rgb(226, 226, 226);
 
           .form-delivery-postcode {
             display: flex;
@@ -296,11 +291,32 @@
           align-items: center;
           font-size: 2rem;
           gap: 1vw;
+          font-weight: bold;
           .large-radio {
             cursor: pointer;
             width: 30px;
             height: 30px;
-            // transform: scale(1.5); /* Adjust scale as needed */
+            /* Style the radio button appearance */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: 2px solid #333; /* Default border color */
+            border-radius: 50%; /* Make it circular */
+            outline: none;
+
+            /* Add a transition for smooth effect */
+            transition: all 0.2s ease-in-out;
+
+            /* Add some styling when checked */
+            &:checked {
+              border: 2px solid var(--color-acc-5); /* Border color when checked */
+              background-color: white; /* Background when checked */
+              box-shadow: inset 0 0 0 6px var(--color-acc-5); /* Inner circle effect */
+            }
+
+            &:hover {
+              border-color: var(--color-acc-5); /* Border color on hover */
+            }
           }
         }
 
@@ -327,11 +343,59 @@
     }
 
     .form-submit {
+      position: relative; /* Add this to create a positioning context */
       border: solid 2px black;
       border-left: none;
       width: 30%;
+      background-color: var(--color-acc-5);
+      overflow: hidden; /* Hide overflow to keep animations contained */
+      position: relative;
       :hover {
         color: white;
+      }
+
+      .info {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: black;
+        font-size: 2rem;
+        background-color: var(--color-acc-5);
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: slideInFromRight 0.5s forwards;
+        &.hidden {
+          animation: slideOutRight 0.5s forwards;
+        }
+      }
+
+      .continue {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: var(--color-acc-5);
+        animation: slideInFromRight 0.5s forwards;
+
+        &.hidden {
+          animation: slideOutRight 0.5s forwards;
+        }
+      }
+
+      .save {
+        display: block;
+        animation: slideInFromRight 0.5s forwards;
+        &.hidden {
+          animation: slideOutRight 0.5s forwards;
+        }
       }
     }
 
@@ -343,6 +407,25 @@
       to {
         transform: translateY(0);
         opacity: 1;
+      }
+    }
+
+    /* Keyframes animations */
+    @keyframes slideOutRight {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    @keyframes slideInFromRight {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(0);
       }
     }
   }

@@ -1,9 +1,9 @@
 <div class="form cart">
-    <h3>Your Cart</h3>
     <div class="cart-items">
         <% if current_user&.active_cart&.cart_items.present? %>
             <% current_user.active_cart.cart_items.each do |cart_item| %>
                 <div class="cart-item" data-controller="cart_item" data-cart_item-id-value="<%= cart_item.id %>">
+                    <div class="box-topleft">Your Cart</div>
                     <div class="cart-item-name"><%= cart_item.product.name %></div>
                     <div class="cart-item-action">
                         <div class="col-1">
@@ -34,17 +34,18 @@
     </div>
 
     <div class="cart-total">
-        <div class="box-header">Total</div>
-        <%= link_to "Delivery", "#", data: { action: "click->submenu#toggleDeliveryModal", target: "delivery" }, class: "box-footer" %>
-        <strong><%= number_to_currency(current_user&.active_cart&.total_price || 0) %></strong>
+        <div class="box-topleft">Total</div>
+        <%# <div class="box-bottomleft">Order:</div> %>
+        <%= link_to current_user&.active_cart&.delivery_method || "Set Delivery", "#", data: { action: "click->submenu#toggleDeliveryModal", target: "delivery" }, class: "box-bottomright" %>
+        <%= number_to_currency(current_user&.active_cart&.total_price || 0) %>
     </div>
 
     <div class="cart-checkout">
         <% if current_user&.active_cart&.delivery_method.present? %>
-            <div class="box-header">Checkout</div>
+            <div class="box-topleft">Checkout</div>
             <%= link_to "Pay", "#", class: "btn checkout" %>
         <% else %>
-            <div class="box-header">Set Delivery</div>
+            <div class="box-topleft">Set Delivery</div>
             <%= link_to "#", data: { action: "click->submenu#toggleDeliveryModal", target: "delivery" }, class: "btn checkout" do %>
                 <p>Click & Collect</p>
                 <p>or</p>

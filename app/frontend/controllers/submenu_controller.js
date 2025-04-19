@@ -13,6 +13,20 @@ export default class extends Controller {
   connect() {
     console.log("Stimulus: submenu controller connected.");
     this.submenuBar();
+
+    // Listen for custom closeDeliveryModal event from the delivery controller
+    document.addEventListener(
+      "closeDeliveryModal",
+      this.closeDeliveryModal.bind(this)
+    );
+  }
+
+  disconnect() {
+    // Clean up event listeners
+    document.removeEventListener(
+      "closeDeliveryModal",
+      this.closeDeliveryModal.bind(this)
+    );
   }
 
   submenuBar() {
