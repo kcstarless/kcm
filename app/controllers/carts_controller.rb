@@ -6,6 +6,13 @@ class CartsController < ApplicationController
   def show
     # Show the cart contents
     @cart_items = @cart.cart_items.includes(:product)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("tf-cart", partial: "shared/form_cart")
+      end
+    end
   end
 
   def update_delivery

@@ -68,6 +68,29 @@
     }
   }
 
+  &.modalCheckout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background: white;
+    transition: transform 0.3s ease-in-out;
+    &.hidden {
+      display: opacity(0);
+      transform: translateY(-100%); /* Start off-screen */
+      .btn {
+        &.modal-close {
+          display: none;
+        }
+      }
+    }
+
+    &:not(.hidden) {
+      transform: translateY(0%); /* Slide into view */
+    }
+  }
+
   @media screen and (max-width: 1000px) {
     .desktop-submenu {
       display: none;

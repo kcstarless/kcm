@@ -43,5 +43,8 @@ Rails.application.routes.draw do
   get "cart", to: "carts#show", as: :cart
   patch "cart/update_delivery", to: "carts#update_delivery", as: :cart_update_delivery
 
+  # Checkout routes
+  resource :checkout, only: [ :show, :create ]
+
   resources :check_postcode, to: "delivery#check_postcode"
 end

@@ -1,0 +1,107 @@
+/*
+PSEUDOCODE: RESPONSIVE NAVIGATION SYSTEM IMPLEMENTATION
+Author: JWGIM
+Date: April 28, 2025
+*/
+
+// INITIAL SETUP
+CLASS ResponsiveNavigationSystem
+  PROPERTIES:
+    currentLayout: String  // Either 'mobile' or 'desktop'
+    mobileFrame: TurboFrame
+    desktopFrame: TurboFrame
+    currentPath: String
+    accordionController: StimulusController
+    submenuController: StimulusController
+
+  // LAYOUT DETECTION AND SWITCHING
+  FUNCTION detectAndSetLayout()
+    IF window.innerWidth < BREAKPOINT_WIDTH THEN
+      currentLayout = 'mobile'
+      showMobileLayout()
+      hideDeskTopLayout()
+    ELSE
+      currentLayout = 'desktop'
+      showDesktopLayout()
+      hideMobileLayout()
+    END IF
+  END FUNCTION
+
+  // CONTENT SYNCHRONISATION BETWEEN LAYOUTS
+  FUNCTION updateContent(newPath, targetFrame)
+    currentPath = newPath
+    
+    // Update the specified frame
+    IF targetFrame == 'desktop' THEN
+      desktopFrame.src = newPath
+      
+      // Also update mobile frame to keep in sync
+      mobileFrame.src = newPath
+    ELSE IF targetFrame == 'mobile' THEN
+      mobileFrame.src = newPath
+    END IF
+    
+    // Activate correct accordion panel based on path
+    activateAccordionPanelForPath(currentPath)
+  END FUNCTION
+  
+  // ACCORDION MANAGEMENT FOR BOTH LAYOUTS
+  FUNCTION activateAccordionPanelForPath(path)
+    // Find the panel that should be active for this path
+    FOR EACH panel IN accordionPanels
+      IF path.startsWith(panel.urlPath) THEN
+        accordionController.activatePanel(panel)
+      ELSE
+        accordionController.deactivatePanel(panel)
+      END IF
+    END FOR
+  END FUNCTION
+  
+  // MOBILE-SPECIFIC FUNCTIONS
+  FUNCTION toggleMobileMenu()
+    IF mobileMenu.isVisible THEN
+      animateMenuClosure()
+      mobileMenu.isVisible = false
+    ELSE
+      animateMenuOpen()
+      mobileMenu.isVisible = true
+    END IF
+  END FUNCTION
+  
+  // EVENT HANDLERS
+  FUNCTION handleWindowResize()
+    detectAndSetLayout()
+  END FUNCTION
+  
+  FUNCTION handleNavLinkClick(event)
+    event.preventDefault()
+    newPath = event.target.href
+    
+    // Determine which frame to update based on current layout
+    updateContent(newPath, currentLayout)
+    
+    // If on mobile, close the menu after navigation
+    IF currentLayout == 'mobile' AND mobileMenu.isVisible THEN
+      toggleMobileMenu()
+    END IF
+  END FUNCTION
+  
+  // MODAL HANDLING FOR SUBMENU
+  FUNCTION toggleModal(modalType)
+    submenuController.hideAllModals()
+    submenuController.showModal(modalType)
+  END FUNCTION
+  
+END CLASS
+
+// INITIALISATION
+WHEN DOMContentLoaded
+  navigationSystem = new ResponsiveNavigationSystem()
+  navigationSystem.detectAndSetLayout()
+  
+  // Set up event listeners
+  window.addEventListener('resize', navigationSystem.handleWindowResize)
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', navigationSystem.handleNavLinkClick)
+  })
+END WHEN

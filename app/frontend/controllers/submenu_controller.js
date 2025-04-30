@@ -8,6 +8,7 @@ export default class extends Controller {
     "loginContainer",
     "modalBody",
     "modalDelivery",
+    "modalCheckout",
   ];
 
   connect() {
@@ -104,5 +105,16 @@ export default class extends Controller {
   closeDeliveryModal(event) {
     event.preventDefault();
     this.modalDeliveryTarget.classList.add("hidden"); // Hide the modal
+  }
+
+  // Load checkout modal
+  toggleCheckoutModal(event) {
+    event.preventDefault();
+    this.modalCheckoutTarget.classList.remove("hidden");
+  }
+
+  closeCheckoutModal(event) {
+    event.preventDefault();
+    this.modalCheckoutTarget.classList.add("hidden"); // Hide the modal
   }
 }

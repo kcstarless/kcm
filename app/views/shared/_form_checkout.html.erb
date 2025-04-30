@@ -1,0 +1,141 @@
+<div class="form checkout">
+    
+    <!-- Cart Items Section -->
+    <div class="checkout-items">
+      <div class="box-topleft">Order Summary</div>
+      <% if current_user&.active_cart&.cart_items.present? %>
+        <div class="checkout-items-list">
+          <% current_user.active_cart.cart_items.each do |cart_item| %>
+            <div class="checkout-item">
+              <div class="checkout-item-name"><%= cart_item.product.name %></div>
+              <div class="checkout-item-qty-price">
+                <div class="checkout-item-quantity">Qty <%= cart_item.quantity %></div>
+                <div class="checkout-item-price"><%= number_to_currency(cart_item.product.price * cart_item.quantity) %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="checkout-total">
+          <div class="box-bottomleft">Total</div>
+          <div class="box-bottomright"><%= number_to_currency(current_user&.active_cart&.total_price || 0) %></div>
+        </div>
+      <% else %>
+        <p>Your cart is empty.</p>
+      <% end %>
+    </div>
+    
+    <!-- Contact Information Section -->
+    <%= form_with url: checkout_path, method: :post, class: "checkout-form" do |form| %>
+    <div class="checkout-contact">
+        <div class="box-topleft">Order Details</div>
+        
+        <div class="delivery-details">
+            <h3>Selected Delivery Method</h3>
+            <p><strong>Method:</strong> <%= current_user&.active_cart&.delivery_method&.capitalize || "Not set" %></p>
+            <% if current_user&.active_cart&.date_slot.present? && current_user&.active_cart&.time_slot.present? %>
+              <p><strong>Time:</strong> <%= current_user&.active_cart&.date_slot.strftime("%d %B %Y") %> at <%= current_user&.active_cart&.time_slot %></p>
+            <% end %>
+        </div>
+
+        <div class="form-section">
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <%= form.text_field :first_name, value: current_user&.first_name, required: true %>
+          </div>
+          
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <%= form.text_field :last_name, value: current_user&.last_name, required: true %>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Contact Number</label>
+            <%= form.telephone_field :phone, required: true %>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <%= form.email_field :email, value: current_user&.email_address, required: true %>
+          </div>
+        </div>
+        
+        <!-- Delivery Address Section -->
+        <div class="form-section">
+          <% if current_user&.active_cart&.delivery_method == "delivery" %>
+            <h2>Delivery Address</h2>
+            
+            <div class="form-group">
+              <label for="street_address">Street Address</label>
+              <%= form.text_field :street_address, required: true %>
+            </div>
+            
+            <div class="form-group">
+              <label for="apartment">Apartment Number (Optional)</label>
+              <%= form.text_field :apartment %>
+            </div>
+            
+            <div class="form-group">
+              <label for="suburb">Suburb</label>
+              <%= form.text_field :suburb, required: true %>
+            </div>
+            
+            <div class="form-group">
+              <label for="state">State</label>
+              <%= form.text_field :state, required: true %>
+            </div>
+            
+            <div class="form-group">
+              <label for="postcode">Postcode</label>
+              <%= form.text_field :postcode, required: true %>
+            </div>
+          <% elsif current_user&.active_cart&.delivery_method == "pickup" %>
+            <h2>Pickup Information</h2>
+            <div class="pickup-info">
+              <p>You selected in-store pickup at King Charles Market.</p>
+              <p>Please bring your ID for verification when you collect your order.</p>
+            </div>
+          <% end %>
+        </div>
+    </div>
+
+
+    <!-- Payment Section -->
+    <div class="checkout-actions">
+      <div class="payment-section">
+        <h2>Payment Method</h2>
+        <p>We accept all major credit cards.</p>
+        
+        <!-- Credit Card Form -->
+        <div class="credit-card-form">
+          <div class="form-group">
+            <label for="card_name">Name on Card</label>
+            <%= form.text_field :card_name, value: "#{current_user&.first_name} #{current_user&.last_name}", required: true %>
+          </div>
+          
+          <div class="form-group">
+            <label for="card_number">Card Number</label>
+            <%= form.text_field :card_number, required: true, placeholder: "1234 5678 9012 3456", maxlength: 19 %>
+          </div>
+          
+          <div class="card-extra-details">
+            <div class="form-group expiry-date">
+              <label for="card_expiry">Expiry Date</label>
+              <%= form.text_field :card_expiry, required: true, placeholder: "MM/YY", maxlength: 5 %>
+            </div>
+            
+            <div class="form-group cvc">
+              <label for="card_cvc">CVC</label>
+              <%= form.text_field :card_cvc, required: true, placeholder: "123", maxlength: 4 %>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="checkout-buttons">
+        <button type="button" class="btn cancel" data-action="click->submenu#closeCheckoutModal">Cancel</button>
+        <%= form.submit "Complete Order", class: "btn checkout-submit" %>
+      </div>
+    </div>
+
+    <% end %>
+</div>

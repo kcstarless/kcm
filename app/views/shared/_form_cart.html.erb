@@ -43,7 +43,7 @@
     <div class="cart-checkout">
         <% if current_user&.active_cart&.delivery_method.present? %>
             <div class="box-topleft">Checkout</div>
-            <%= link_to "Pay", "#", class: "btn checkout" %>
+            <%= link_to "Payment", '#', data: { action: "click->submenu#toggleCheckoutModal", target: "checkout" }, class: "btn checkout" %>
         <% else %>
             <div class="box-topleft">Set Delivery</div>
             <%= link_to "#", data: { action: "click->submenu#toggleDeliveryModal", target: "delivery" }, class: "btn checkout" do %>
@@ -59,6 +59,15 @@
             <!-- Delivery From -->
             <div id="deliveryForm">
                 <%= render partial: "shared/form_delivery", locals: { user: User.new } %>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="modalCheckout" class="modal modalCheckout hidden" data-submenu-target="modalCheckout">
+        <div class="modal-body">
+            <div id="checkoutForm">
+                <%= render partial: "shared/form_checkout", locals: { user: User.new } %>
             </div>
         </div>
     </div>

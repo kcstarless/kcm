@@ -1,6 +1,6 @@
 .form {
   width: 100%;
-  font-family: "Poppins";
+  // font-family: "Poppins";
   &.login,
   &.registration {
     display: grid;
@@ -101,6 +101,7 @@
       justify-content: center;
       align-items: center;
       border: solid 2px black;
+
       // gap: 2vw;
       .cart-item {
         width: 100%;
@@ -193,7 +194,7 @@
       border: solid 2px black;
       border-left: none;
       cursor: pointer;
-      font-family: "Paytone One";
+      // font-family: "Paytone One";
     }
 
     .box-topleft {
@@ -202,7 +203,7 @@
       left: 0.5vw;
       font-size: 1rem;
       text-transform: uppercase;
-      font-family: "Poppins";
+      font-family: "Nova Mono";
       font-weight: bold;
     }
     .box-topright {
@@ -226,14 +227,13 @@
       text-decoration: underline;
       // border: solid 1px black;
       padding: 0 0.5vw;
-      font-family: "Poppins";
+      font-family: "Nova Mono";
     }
   }
 
   &.delivery {
     display: flex;
     flex-direction: row;
-    font-family: "Poppins";
     width: 100%;
     // min-height: 75vh;
 
@@ -245,11 +245,13 @@
         .header {
           padding: 2vw;
           border-bottom: solid 2px rgb(226, 226, 226);
+          font-family: "Poppins";
           .current-delivery-method {
             font-size: 2rem;
             font-weight: bold;
             padding-bottom: 2vw;
             color: var(--color-acc-5);
+            font-family: "Nova Mono";
           }
         }
 
@@ -292,6 +294,7 @@
           font-size: 2rem;
           gap: 1vw;
           font-weight: bold;
+          color: var(--color-acc-5);
           .large-radio {
             cursor: pointer;
             width: 30px;
@@ -426,6 +429,184 @@
       }
       100% {
         transform: translateX(0);
+      }
+    }
+  }
+
+  &.checkout {
+    display: grid;
+    grid-template-columns: 0.3fr 0.7fr;
+    height: 100vh;
+
+    .checkout-items {
+      padding: 1vw;
+      border: solid 2px black;
+      position: relative;
+      .checkout-items-list {
+        padding-top: 3vw;
+        .checkout-item {
+          display: flex;
+          flex-direction: column;
+          padding: 0.5vw 0;
+          border-bottom: solid 1px rgb(218, 218, 218);
+          .checkout-item-qty-price {
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+      }
+      .checkout-total {
+        .box-bottomleft {
+          font-weight: bold;
+          font-size: 2rem;
+          font-family: "Paytone One";
+        }
+        .box-bottomright {
+          font-weight: bold;
+          font-size: 2rem;
+          text-decoration: none;
+          font-family: "Paytone One";
+        }
+      }
+    }
+
+    .box-topleft {
+      font-weight: bold;
+      font-size: 2rem;
+      font-family: "Paytone One";
+    }
+
+    .checkout-contact {
+      position: relative;
+      // padding: 1vw;
+      border: solid 2px black;
+      border-left: none;
+
+      .delivery-details {
+        padding-top: 3vw;
+      }
+      .form-section {
+        display: flex;
+        flex-direction: column;
+        padding-top: 1vw;
+        .form-group {
+          display: grid;
+          grid-template-columns: 0.5fr 0.5fr;
+          justify-content: space-between;
+          line-height: 1.5vw;
+          padding-bottom: 0.5vw;
+          label {
+            font-size: 1.5rem;
+            width: 100%;
+          }
+          input {
+            font-size: 1.5rem;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .checkout-form {
+      display: grid;
+      grid-template-columns: 0.6fr 0.4fr;
+      .checkout-contact {
+        padding: 1vw;
+      }
+
+      .checkout-actions {
+        background-color: var(--color-acc-5);
+        padding: 1vw;
+
+        .payment-section {
+          margin-bottom: 20px;
+
+          h2 {
+            color: #fff;
+            margin-bottom: 10px;
+          }
+
+          p {
+            color: #fff;
+            margin-bottom: 20px;
+          }
+        }
+
+        .credit-card-form {
+          background-color: #fff;
+          padding: 15px;
+          border-radius: 5px;
+          margin-bottom: 20px;
+
+          .form-group {
+            margin-bottom: 15px;
+
+            label {
+              display: block;
+              margin-bottom: 5px;
+              font-weight: bold;
+              font-size: 1rem;
+            }
+
+            input {
+              width: 100%;
+              padding: 8px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              font-size: 1rem;
+            }
+          }
+
+          .card-extra-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+          }
+        }
+
+        .checkout-buttons {
+          display: flex;
+          justify-content: space-between;
+
+          .btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+
+            &.cancel {
+              background-color: #fff;
+              color: var(--color-acc-5);
+            }
+
+            &.checkout-submit {
+              background-color: #fff;
+              color: var(--color-acc-5);
+              font-weight: bold;
+            }
+          }
+        }
+
+        .validation-error {
+          background-color: #fff5f5;
+          color: #e53e3e;
+          padding: 10px;
+          margin-bottom: 15px;
+          border-radius: 4px;
+          border-left: 4px solid #e53e3e;
+          font-size: 14px;
+
+          &.hidden {
+            display: none;
+          }
+        }
+
+        // Add style for invalid inputs
+        .invalid {
+          border-color: #e53e3e !important;
+          background-color: #fff5f5 !important;
+        }
       }
     }
   }
