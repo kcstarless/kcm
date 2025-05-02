@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_30_201251) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_01_235329) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -99,22 +99,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_30_201251) do
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "cart_id", null: false
-    t.decimal "total_amount"
-    t.string "status"
-    t.string "delivery_method"
-    t.date "date_slot"
-    t.string "time_slot"
-    t.text "address"
-    t.string "tracking_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_orders_on_cart_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -177,8 +161,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_30_201251) do
   add_foreign_key "cart_items", "products"
   add_foreign_key "carts", "users"
   add_foreign_key "customers", "users"
-  add_foreign_key "orders", "carts"
-  add_foreign_key "orders", "users"
   add_foreign_key "products", "shops"
   add_foreign_key "sessions", "users"
   add_foreign_key "traders", "users"
