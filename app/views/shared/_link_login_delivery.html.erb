@@ -43,7 +43,7 @@
             
             <turbo-frame id="tf-cart">
                 <div id="cartForm">
-                    <%= render partial: "shared/form_cart", locals: { user: User.new } %>
+                    <%= render partial: "shared/form_cart", locals: { user: User.new, order: Order.last } %>
                 </div>
             </turbo-frame>
         </div>

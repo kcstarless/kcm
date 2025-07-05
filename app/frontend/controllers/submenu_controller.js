@@ -68,7 +68,9 @@ export default class extends Controller {
 
     // Remove active class from all forms
     this.modalBodyTarget
-      .querySelectorAll("#loginForm, #registerForm, #deliveryForm, #cartForm")
+      .querySelectorAll(
+        "#loginForm, #registerForm, #deliveryForm, #cartForm, #checkoutForm"
+      )
       .forEach((form) => {
         form.classList.remove("active");
       });
@@ -94,6 +96,9 @@ export default class extends Controller {
     // Dispatch a custom event to trigger reset logic in other controllers
     const resetEvent = new Event("modalClosed");
     document.dispatchEvent(resetEvent);
+
+    // Update the login/delivery links using fetch and Turbo
+    this.updateLoginDeliveryLinks();
   }
 
   // Load delivery form modal
@@ -102,12 +107,12 @@ export default class extends Controller {
     // this.closeModal();
     this.modalDeliveryTarget.classList.remove("hidden");
   }
+
   closeDeliveryModal(event) {
     event.preventDefault();
     this.modalDeliveryTarget.classList.add("hidden"); // Hide the modal
   }
 
-  // Load checkout modal
   toggleCheckoutModal(event) {
     event.preventDefault();
     this.modalCheckoutTarget.classList.remove("hidden");
@@ -116,5 +121,27 @@ export default class extends Controller {
   closeCheckoutModal(event) {
     event.preventDefault();
     this.modalCheckoutTarget.classList.add("hidden"); // Hide the modal
+  }
+
+  updateLoginDeliveryLinks() {
+    // Use regular AJAX to fetch the HTML content
+    fetch("/shared/link_login_delivery")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then((html) => {
+        // Find the tf-login-delivery-links frame
+        const frame = document.getElementById("tf-login-delivery-links");
+        if (frame) {
+          // Replace the inner HTML of the frame with the new content
+          frame.innerHTML = html;
+        }
+      })
+      .catch((error) =>
+        console.error("Error updating login/delivery links:", error)
+      );
   }
 }

@@ -7,6 +7,10 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+    <% if Rails.application.credentials.dig(:stripe, :publishable_key).present? %>
+      <meta name="stripe-key" content="<%= Rails.application.credentials.dig(:stripe, :publishable_key) %>">
+    <% end %>
 
     <%= yield :head %>
 

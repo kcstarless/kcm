@@ -455,6 +455,7 @@
           }
         }
       }
+
       .checkout-total {
         .box-bottomleft {
           font-weight: bold;
@@ -474,6 +475,7 @@
       font-weight: bold;
       font-size: 2rem;
       font-family: "Paytone One";
+      // color: var(--color-acc-5);
     }
 
     .checkout-contact {
@@ -481,9 +483,9 @@
       // padding: 1vw;
       border: solid 2px black;
       border-left: none;
-
       .delivery-details {
         padding-top: 3vw;
+        color: var(--color-acc-5);
       }
       .form-section {
         display: flex;
@@ -510,6 +512,7 @@
     .checkout-form {
       display: grid;
       grid-template-columns: 0.6fr 0.4fr;
+
       .checkout-contact {
         padding: 1vw;
       }
@@ -517,13 +520,17 @@
       .checkout-actions {
         background-color: var(--color-acc-5);
         padding: 1vw;
+        position: relative;
+        border: solid 2px black;
+        border-left: none;
 
         .payment-section {
-          margin-bottom: 20px;
+          // margin-bottom: 20px;
 
           h2 {
             color: #fff;
             margin-bottom: 10px;
+            margin-top: 10px;
           }
 
           p {
@@ -608,6 +615,54 @@
           background-color: #fff5f5 !important;
         }
       }
+    }
+  }
+
+  &.confirmation {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    height: 100vh;
+    .col-1 {
+      padding: 1vw;
+      border: solid 2px black;
+      position: relative;
+      height: 100vh;
+      h3 {
+        font-weight: bold;
+        font-size: 2rem;
+        font-family: "Paytone One";
+      }
+      .details {
+        padding-top: 2vw;
+        font-size: 1.2rem;
+        font-family: "Nova Mono";
+      }
+    }
+
+    .col-2 {
+      padding: 1vw;
+      border: solid 2px black;
+      border-left: none;
+      position: relative;
+      height: 100vh;
+
+      tr {
+        width: 100%;
+      }
+
+      th {
+        width: 100%;
+        text-align: left;
+        padding-right: 5vw;
+        // border: solid 1px black;
+      }
+    }
+
+    .box-topleft {
+      font-weight: bold;
+      font-size: 2rem;
+      font-family: "Paytone One";
+      // color: var(--color-acc-5);
     }
   }
 }

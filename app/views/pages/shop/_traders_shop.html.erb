@@ -21,19 +21,17 @@
             </div>
             <div class="product-add-to-cart">
               <div class="product-minus">
-                <button data-action="click->cart#decreaseQuantity" data-product-id="<%= product.id %>">-</button>
+                <button data-action="click->cart#decreaseQuantity" data-product-id="<%= product.id %>" class="btn add-remove">-</button>
               </div>
               <div class="product-quantity" id="product-quantity-<%= product.id %>">1</div>
               <div class="product-plus">
-                <button data-action="click->cart#increaseQuantity" data-product-id="<%= product.id %>">+</button>
+                <button data-action="click->cart#increaseQuantity" data-product-id="<%= product.id %>" class="btn add-remove">+</button>
               </div>
-              <div class="add-to-cart">
-                <%= form_with url: cart_items_path, method: :post, local: true do |form| %>
-                  <%= hidden_field_tag :product_id, product.id %>
-                  <%= hidden_field_tag :quantity, 1, id: "quantity-input-#{product.id}" %>
-                  <%= form.submit "ADD", class: "add-to-cart-button" %>
-                <% end %>
-              </div>
+              <%= form_with url: cart_items_path, class: "add-to-cart", method: :post, local: true do |form| %>
+                <%= hidden_field_tag :product_id, product.id %>
+                <%= hidden_field_tag :quantity, 1, id: "quantity-input-#{product.id}" %>
+                <%= form.submit "ADD", class: "btn add-to-cart" %>
+              <% end %>
             </div>
           </div>
         <% end %>

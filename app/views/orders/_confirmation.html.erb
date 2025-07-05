@@ -1,0 +1,63 @@
+<%# filepath: /home/jwgim/repos/personal_projects/kcm/app/views/orders/_order_confirmation_frame.html.erb %>
+<turbo-frame id="checkout-frame">
+  <div class="form confirmation">
+
+    <div class="col-1">
+      <div class="box-topleft">Order Confirmation</div>
+      <p>Thank you for your order, <%= current_user.first_name %>!</p>
+      <p>Your order number is: <strong><%= order.id %></strong></p>
+      <br />
+      <p>We will send you an email confirmation shortly.</p>
+      <p>If you have any questions, feel free to contact us.</p>
+      <br />
+      <h3>Order Details</h3>
+      <p class="details"><strong>Date:</strong> <%= order.created_at.strftime("%B %d, %Y at %I:%M %p") %></p>
+      <p class="details"><strong>Total Amount:</strong> $<%= number_with_precision(order.total_amount, precision: 2) %></p>
+      <p class="details"><strong>Delivery Method:</strong> <%= order.delivery_method.capitalize %></p>
+      
+      <% if order.delivery_method == "delivery" %>
+        <div class="delivery-address">
+          <h4>Delivery Address</h4>
+          <p><%= order.street_address %> <%= order.apartment.present? ? ", #{order.apartment}" : "" %></p>
+          <p><%= order.suburb %>, <%= order.state %> <%= order.postcode %></p>
+        </div>
+      <% end %>
+      
+      <p class="details"><strong>Delivery Date:</strong> <%= order.date_slot.strftime("%A, %B %d, %Y") %></p>
+      <p class="details"><strong>Time Slot:</strong> <%= order.time_slot %></p>
+    </div>
+    
+    <div class="col-2">
+      <div class="box-topleft">Items Ordered</div>
+      <table class="order-items-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% order.cart.cart_items.each do |item| %>
+            <tr>
+              <td><%= item.product.name %></td>
+              <td><%= item.quantity %></td>
+              <td>$<%= number_with_precision(item.price, precision: 2) %></td>
+              <td>$<%= number_with_precision(item.quantity * item.price, precision: 2) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="thankyou">
+        <p>Thank you for shopping with us!</p>
+        <p>We appreciate your business and look forward to serving you again.</p>
+      </div>
+    </div>
+    
+    <div class="button-nav">
+      <button class="btn modal-close" data-action="click->submenu#closeModal">&times;</button>
+    </div>
+  </div>
+</turbo-frame>

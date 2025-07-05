@@ -30,4 +30,9 @@ class PagesController < ApplicationController
   def form_delivery
     render partial: "shared/form_delivery"
   end
+
+  # Render the login/delivery links partial
+  def link_login_delivery
+    render partial: "shared/link_login_delivery"
+  end
 end

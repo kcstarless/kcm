@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root to: redirect("/home")
   get "home", to: "pages#home", as: "home"
 
+  # Route for login/delivery links partial
+  get "/shared/link_login_delivery", to: "pages#link_login_delivery"
+
   scope path: "/visitus" do
     get "/", to: "pages#visitus", as: :visitus
     get "/parking", to: "pages#parking", as: :parking
@@ -44,7 +47,12 @@ Rails.application.routes.draw do
   patch "cart/update_delivery", to: "carts#update_delivery", as: :cart_update_delivery
 
   # Checkout routes
-  resource :checkout, only: [ :show, :create ]
+  resource :checkout, only: [ :show, :create, :new ]
+  get "orders/:id/confirmation", to: "orders#confirmation", as: :order_confirmation
+  # get "orders/preview/confirmation", to: "orders#preview_confirmation"
 
   resources :check_postcode, to: "delivery#check_postcode"
+
+  # Stripe webhook endpoint
+  post "stripe/webhooks", to: "stripe_webhooks#create"
 end

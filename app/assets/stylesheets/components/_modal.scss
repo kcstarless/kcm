@@ -76,6 +76,7 @@
     height: auto;
     background: white;
     transition: transform 0.3s ease-in-out;
+    z-index: 20;
     &.hidden {
       display: opacity(0);
       transform: translateY(-100%); /* Start off-screen */

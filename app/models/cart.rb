@@ -1,6 +1,7 @@
 class Cart < ApplicationRecord
   belongs_to :user
   has_many :cart_items, dependent: :destroy
+  has_one :order
 
   enum :status, { active: "active", completed: "completed", cancelled: "cancelled" }, validate: true
 

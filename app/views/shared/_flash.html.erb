@@ -1,13 +1,13 @@
 <div data-controller="flash">
-  <% if flash[:notice] %>
+  <% if flash[:notice] || flash.now[:notice] %>
     <div class="flash flash-notice">
-      <%= flash[:notice] %>
+      <%= flash[:notice] || flash.now[:notice] %>
     </div>
   <% end %>
 
-  <% if flash[:alert] %>
+  <% if flash[:alert] || flash.now[:alert] %>
     <div class="flash flash-alert">
-      <%= flash[:alert] %>
+      <%= flash[:alert] || flash.now[:alert] %>
     </div>
   <% end %>
 

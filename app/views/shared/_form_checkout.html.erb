@@ -1,4 +1,4 @@
-<div class="form checkout">
+<div id="checkout-frame" class="form checkout">
     
     <!-- Cart Items Section -->
     <div class="checkout-items">
@@ -25,7 +25,7 @@
     </div>
     
     <!-- Contact Information Section -->
-    <%= form_with url: checkout_path, method: :post, class: "checkout-form" do |form| %>
+    <%= form_with url: checkout_path, method: :post, class: "checkout-form", data: { turbo_stream: true } do |form| %>
     <div class="checkout-contact">
         <div class="box-topleft">Order Details</div>
         
@@ -62,7 +62,7 @@
         <!-- Delivery Address Section -->
         <div class="form-section">
           <% if current_user&.active_cart&.delivery_method == "delivery" %>
-            <h2>Delivery Address</h2>
+            <h3>Delivery Address</h3><br />
             
             <div class="form-group">
               <label for="street_address">Street Address</label>
@@ -70,7 +70,7 @@
             </div>
             
             <div class="form-group">
-              <label for="apartment">Apartment Number (Optional)</label>
+              <label for="apartment">Apartment Number</label>
               <%= form.text_field :apartment %>
             </div>
             
@@ -102,39 +102,37 @@
     <!-- Payment Section -->
     <div class="checkout-actions">
       <div class="payment-section">
+        <div class="button-nav">
+          <button class="btn modal-close-checkout" data-action="click->submenu#closeCheckoutModal">&#x25c0;</button>
+          <button class="btn modal-close" data-action="click->submenu#closeModal">&times;</button>
+        </div>
         <h2>Payment Method</h2>
         <p>We accept all major credit cards.</p>
         
-        <!-- Credit Card Form -->
-        <div class="credit-card-form">
+        <!-- Credit Card Form using Stripe Elements with Stimulus -->
+        <div class="credit-card-form" data-controller="stripe" data-stripe-form-target="form">
           <div class="form-group">
             <label for="card_name">Name on Card</label>
-            <%= form.text_field :card_name, value: "#{current_user&.first_name} #{current_user&.last_name}", required: true %>
+            <%= form.text_field :card_name, value: "#{current_user&.first_name} #{current_user&.last_name}", required: true, data: { stripe_target: "cardName" } %>
           </div>
           
           <div class="form-group">
-            <label for="card_number">Card Number</label>
-            <%= form.text_field :card_number, required: true, placeholder: "1234 5678 9012 3456", maxlength: 19 %>
+            <label>Card Details</label>
+            <div data-stripe-target="element" class="stripe-element" style="border: 1px solid #ccc; padding: 10px; min-height: 40px;"></div>
           </div>
           
-          <div class="card-extra-details">
-            <div class="form-group expiry-date">
-              <label for="card_expiry">Expiry Date</label>
-              <%= form.text_field :card_expiry, required: true, placeholder: "MM/YY", maxlength: 5 %>
-            </div>
-            
-            <div class="form-group cvc">
-              <label for="card_cvc">CVC</label>
-              <%= form.text_field :card_cvc, required: true, placeholder: "123", maxlength: 4 %>
-            </div>
+          <!-- Used to display form errors -->
+          <div data-stripe-target="errors" class="error-message"></div>
+          
+          <!-- Hidden field for the payment method ID -->
+          <%= form.hidden_field :payment_method_id, data: { stripe_target: "paymentMethodId" } %>
+          
+          <div class="checkout-buttons">
+            <%= form.submit "Complete Order", class: "btn checkout-submit", id: "submit-button", data: { stripe_target: "submitButton" } %>
           </div>
         </div>
       </div>
-      
-      <div class="checkout-buttons">
-        <button type="button" class="btn cancel" data-action="click->submenu#closeCheckoutModal">Cancel</button>
-        <%= form.submit "Complete Order", class: "btn checkout-submit" %>
-      </div>
+
     </div>
 
     <% end %>
